@@ -1,0 +1,8 @@
+20240513	15:38:07	5caf85e2-c9de-4b15-b167-7f9a69c5b347	GET	undefined	/index.html
+
+20240513	15:38:07	09f97f0f-3c4b-4076-93a7-216182f3d8f0	GET	undefined	/css/style.css
+
+20240513	15:38:17	11a45e39-e6a6-4966-91e5-5b954d0f8fb3	GET	undefined	/index.html
+
+20240513	15:38:18	2634349c-d017-4af0-8751-a298f0abfa25	GET	undefined	/css/style.css
+
