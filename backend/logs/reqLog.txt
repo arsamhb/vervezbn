@@ -42,3 +42,16 @@
 20240513	16:57:37	f76f5dc0-4733-459a-b9cb-eebd3cdede2d	GET	undefined	/new-page.html
 20240513	16:57:37	422a233d-2bd6-4e07-81ce-5e03a769d894	GET	undefined	/css/style.css
 20240513	16:57:37	869a3983-979f-4aa6-bf07-dde0237554ed	GET	undefined	/img/img1.jpg
+20240513	17:30:36	6a006d39-efce-4ec9-aae6-6fe4edaa64a2	GET	undefined	/users
+20240513	17:32:15	da6714a2-2305-492b-b481-bcd3b07fd8e2	GET	undefined	/users
+20240513	17:32:38	3af559ec-e4f6-4f25-83cc-fcededd8a863	POST	undefined	/users
+20240513	17:32:46	0768455d-76aa-4575-bbd4-441d6e8de214	PUT	undefined	/users
+20240513	17:32:53	6a2ba2e2-95b2-43c9-8eb3-c7b4d029c706	DELETE	undefined	/users
+20240513	17:32:59	eb022fcd-b295-43fb-a147-b89b6c05bbb2	DELETE	undefined	/users/1
+20240513	17:33:10	d09ca0d9-bf37-431e-b5a6-50af0e85a495	DELETE	undefined	/users/1
+20240513	17:33:24	911e5c6d-234d-4aba-9b39-5a33ab5ff988	DELETE	undefined	/users/1
+20240513	17:33:25	a1c970f1-8a77-426c-8d18-1924a32d9de0	DELETE	undefined	/users/1
+20240513	17:33:30	a67a197e-69ec-4d82-903d-b1fbde5e0b19	DELETE	undefined	/users/1
+20240513	17:33:31	371b595d-f400-4bce-905e-38e87f9d373e	DELETE	undefined	/users/1
+20240513	17:34:12	a8a11312-f468-4b13-8403-0ffc55f1ffea	DELETE	undefined	/users/1
+20240513	17:34:46	5497f98d-f62b-4f59-9adf-8358c970b92c	GET	undefined	/users/1
