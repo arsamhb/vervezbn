@@ -1,0 +1,32 @@
+20240513	15:38:07	5caf85e2-c9de-4b15-b167-7f9a69c5b347	GET	undefined	/index.html
+
+20240513	15:38:07	09f97f0f-3c4b-4076-93a7-216182f3d8f0	GET	undefined	/css/style.css
+
+20240513	15:38:17	11a45e39-e6a6-4966-91e5-5b954d0f8fb3	GET	undefined	/index.html
+
+20240513	15:38:18	2634349c-d017-4af0-8751-a298f0abfa25	GET	undefined	/css/style.css
+
+20240513	15:49:36	48707f36-9a88-4da9-8871-10ad95b0ccea	GET	undefined	/index.html
+20240513	15:49:36	1e2a00e3-590d-404c-bb8a-fe34c7a6de7b	GET	undefined	/css/style.css
+20240513	15:49:59	a012db8d-5566-4c70-b85e-855de0d39809	GET	undefined	/index.html
+20240513	15:49:59	74d3a4e9-d101-4406-9700-787d9f773ab0	GET	undefined	/css/style.css
+20240513	15:50:05	e5b6a282-515d-423f-965d-1b86a134354c	GET	undefined	/index
+20240513	15:50:05	4b01f263-7c76-4210-9fbe-a11846761561	GET	undefined	/css/style.css
+20240513	15:50:42	fb325dba-9b4a-4eff-bbf3-2e2454d964b7	GET	undefined	/index
+20240513	15:50:42	e2c32dc8-9858-4bb8-8c01-49324ec11f2d	GET	undefined	/css/style.css
+20240513	15:50:44	be233c55-ca12-4747-a4ad-11071216a237	GET	undefined	/index
+20240513	15:50:44	313a4cd3-216c-443b-987e-0f5b821c48b4	GET	undefined	/css/style.css
+20240513	15:50:49	e0f5d2ec-fc9b-4a3e-b541-f59d47244744	GET	undefined	/new-page.html
+20240513	15:50:49	cd46e08c-73ed-44e8-9330-dd46672a4471	GET	undefined	/css/style.css
+20240513	15:50:49	60f8bb8f-b19a-49c9-a379-d105f30a652b	GET	undefined	/img/img1.jpg
+20240513	15:51:16	d3bc3891-bd5f-4199-a435-89f2212f2b67	GET	undefined	/new-page.html
+20240513	15:51:16	b43032ee-8976-42ff-83ef-abd68dab353c	GET	undefined	/css/style.css
+20240513	15:51:16	f9ed70ca-1cfc-4800-8a9f-3edad250abe7	GET	undefined	/img/img1.jpg
+20240513	15:51:19	b709bb97-2f40-4781-b71f-5612138ce9c5	GET	undefined	/new-page.html
+20240513	15:51:19	bcd8fbc1-707a-4d48-a061-e59da7e7f024	GET	undefined	/css/style.css
+20240513	15:51:19	c3ad073f-1153-4aca-b968-26f7ecd000ac	GET	undefined	/img/img1.jpg
+20240513	15:51:22	7bb63e13-b4f7-4a57-b58b-0b59beb393d4	GET	undefined	/new-page.html
+20240513	15:51:22	aa93066e-289e-4944-b0ab-33b33f96ef63	GET	undefined	/css/style.css
+20240513	15:51:22	63b6a9c8-3303-46da-b690-6dc8781790c0	GET	undefined	/img/img1.jpg
+20240513	15:51:34	ccb22d2e-65e0-4a18-9197-891f67756f1d	GET	undefined	/index.html
+20240513	15:51:34	ee2e7b27-0805-4bc4-a0fb-2213b17d4a84	GET	undefined	/css/style.css
