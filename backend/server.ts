@@ -27,19 +27,17 @@ app.use(cors(corsOptions));
 // BUILT-IN MIDDLEWARES
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "/public")));
 
-app.get("/index(.html)?", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "index.html"));
-});
+// STATIC FILE SERVING MIDDLEWARE
+app.use("/", express.static(path.join(__dirname, "/public")));
+app.use("/subdir", express.static(path.join(__dirname, "/public")));
 
-app.get("/new-page(.html)?", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "new-page.html"));
-});
+// ROUTING BETWEEN ROUTES
+app.use("/", require("./routes/root"));
+app.use("/subdir", require("./routes/subdir"));
 
-app.get("/old-page(.html)?", (req, res) => {
-  res.redirect(301, "/new-page.html");
-});
+// SAMPLE API
+app.use("/users", require("./routes/api/users"));
 
 app.get("/*", (req, res) => {
   res.status(404).sendFile(path.join(__dirname, "views", "404.html"));
