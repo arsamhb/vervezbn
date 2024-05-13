@@ -30,3 +30,15 @@
 20240513	15:51:22	63b6a9c8-3303-46da-b690-6dc8781790c0	GET	undefined	/img/img1.jpg
 20240513	15:51:34	ccb22d2e-65e0-4a18-9197-891f67756f1d	GET	undefined	/index.html
 20240513	15:51:34	ee2e7b27-0805-4bc4-a0fb-2213b17d4a84	GET	undefined	/css/style.css
+20240513	16:55:50	cf51a60d-ca58-4d5f-ae3c-5503982c4569	GET	undefined	/
+20240513	16:55:50	fca1aa68-df9d-4240-bbf5-a843134f5359	GET	undefined	/css/style.css
+20240513	16:55:54	7d1868d6-db4a-41d2-b32e-46049445d9b3	GET	undefined	/index.html
+20240513	16:55:54	4ce93935-fe8c-4e2c-81dd-f593a7a4d271	GET	undefined	/css/style.css
+20240513	16:55:59	9cd7facd-4a54-4726-8735-807c0c1a1f90	GET	undefined	/subdir/index.html
+20240513	16:56:06	b4bb36e5-2120-4f89-ae6f-6ad879c6aa1f	GET	undefined	/subdir/dasd
+20240513	16:56:06	48cf08e4-8ac8-4639-a86d-25fc22d8e0fa	GET	undefined	/css/style.css
+20240513	16:57:29	b104958a-86c2-4eb6-b78e-f5df71c0682e	GET	undefined	/index.html
+20240513	16:57:29	03eac3f3-6c08-4871-b5db-8e92d0ad69c0	GET	undefined	/css/style.css
+20240513	16:57:37	f76f5dc0-4733-459a-b9cb-eebd3cdede2d	GET	undefined	/new-page.html
+20240513	16:57:37	422a233d-2bd6-4e07-81ce-5e03a769d894	GET	undefined	/css/style.css
+20240513	16:57:37	869a3983-979f-4aa6-bf07-dde0237554ed	GET	undefined	/img/img1.jpg
