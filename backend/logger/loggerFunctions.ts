@@ -1,11 +1,11 @@
-const { v4: uuid } = require("uuid");
-const { format } = require("date-fns");
+import { v4 as uuid } from "uuid";
+import { format } from "date-fns";
 
-const fs = require("fs");
+import fs from "fs";
+import path from "path";
 const fsPromises = require("fs").promises;
-const path = require("path");
 
-const logEvents = async (message: string, logName: string) => {
+export const logEvents = async (message: string, logName: string) => {
   const dateTime = `${format(new Date(), "yyyyMMdd\tHH:mm:ss")}`;
   const logItem = `${dateTime}\t${uuid()}\t${message}\n`;
 
@@ -19,5 +19,3 @@ const logEvents = async (message: string, logName: string) => {
     console.error(err);
   }
 };
-
-module.exports = logEvents;
