@@ -55,3 +55,5 @@
 20240513	17:33:31	371b595d-f400-4bce-905e-38e87f9d373e	DELETE	undefined	/users/1
 20240513	17:34:12	a8a11312-f468-4b13-8403-0ffc55f1ffea	DELETE	undefined	/users/1
 20240513	17:34:46	5497f98d-f62b-4f59-9adf-8358c970b92c	GET	undefined	/users/1
+20240514	14:04:27	d1113252-1a84-4ee4-8357-e08eb4dc2207	GET	undefined	/users/1
+20240514	14:04:31	cfc1d8d7-d4bf-4a09-aecf-9128460dcd32	GET	undefined	/users/
