@@ -3,6 +3,7 @@ import express from "express";
 import { logger } from "./middleware/loggers";
 import cors from "cors";
 import { errorHandler } from "./middleware/errorHandler";
+import { corsOptions } from "./config/corsOptions";
 
 const app = express();
 const PORT = process.env.PORT || 3500;
@@ -11,17 +12,6 @@ const PORT = process.env.PORT || 3500;
 app.use(logger);
 
 // CORS
-const whiteList = ["http://127.0.0.1:5500", "http://localhost:3500"];
-const corsOptions = {
-  origin: (origin: any, callback: any) => {
-    if (whiteList.indexOf(origin) !== -1 || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error("not allowed by CORS"));
-    }
-  },
-  optionsSuccessStatus: 200,
-};
 app.use(cors(corsOptions));
 
 // BUILT-IN MIDDLEWARES
@@ -34,6 +24,8 @@ app.use("/subdir", express.static(path.join(__dirname, "/public")));
 
 // ROUTING BETWEEN ROUTES
 app.use("/", require("./routes/root"));
+app.use("/register", require("./routes/register"));
+app.use("/auth", require("./routes/auth"));
 app.use("/subdir", require("./routes/subdir"));
 
 // SAMPLE API
