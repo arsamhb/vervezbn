@@ -9,7 +9,7 @@
     "precommit": "npm run lint",
     "dev": "nodemon --watch './*.ts' --exec ts-node server.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "cd .. && husky backend/.husky",
+    "prepare": ".husky",
     "build": "tsc"
   },
   "author": "",
