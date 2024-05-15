@@ -1,2 +1,4 @@
 cd backend
-npm lint
+git add .
+npm run lint
+npm run build
