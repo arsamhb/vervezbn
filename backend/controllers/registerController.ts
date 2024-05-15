@@ -22,7 +22,7 @@ export const handleNewUser = async (req: any, res: any) => {
     return res.sendStatus(409);
   }
   try {
-    const hashedPwd = bcrypt.hash(password, 10);
+    const hashedPwd = await bcrypt.hash(password, 10);
 
     const newUser = { userName: userName, password: hashedPwd };
     userDB.setUsers([...userDB.users, newUser]);

@@ -4,6 +4,9 @@ import { logger } from "./middleware/loggers";
 import cors from "cors";
 import { errorHandler } from "./middleware/errorHandler";
 import { corsOptions } from "./config/corsOptions";
+import { verifyJWT } from "./middleware/verifyJWT";
+import cookieParser from "cookie-parser";
+require("dotenv").config();
 
 const app = express();
 const PORT = process.env.PORT || 3500;
@@ -18,6 +21,8 @@ app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+app.use(cookieParser());
+
 // STATIC FILE SERVING MIDDLEWARE
 app.use("/", express.static(path.join(__dirname, "/public")));
 app.use("/subdir", express.static(path.join(__dirname, "/public")));
@@ -26,8 +31,12 @@ app.use("/subdir", express.static(path.join(__dirname, "/public")));
 app.use("/", require("./routes/root"));
 app.use("/register", require("./routes/register"));
 app.use("/auth", require("./routes/auth"));
+app.use("/refresh", require("./routes/refresh"));
+app.use("/logout", require("./routes/logout"));
 app.use("/subdir", require("./routes/subdir"));
 
+// PROTECTING API ROUTES BY THE VERIFY JWT MIDDLEWARE
+app.use(verifyJWT);
 // SAMPLE API
 app.use("/users", require("./routes/api/users"));
 
