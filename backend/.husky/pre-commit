@@ -1,0 +1,4 @@
+cd backend
+git add .
+npm run lint
+npm run build

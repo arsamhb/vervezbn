@@ -1,3 +1,5 @@
+/* eslint-disable-next-line padded-blocks */
+
 import bcrypt from "bcrypt";
 import jwt, { JsonWebTokenError } from "jsonwebtoken";
 import fsPromises from "fs/promises";
