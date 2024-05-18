@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Nav from "@/components/layouts/Nav";
+import Footer from "@/components/layouts/Footer";
 
 export const metadata: Metadata = {
   title: "ZabanVerve",
@@ -13,7 +15,13 @@ export default function RootLayout({
 }>) {
   return (
     <html>
-      <body className="bg-light w-screen min-h-screen">{children}</body>
+      <body className="bg-light w-screen min-h-screen flex flex-col justify-between">
+        <header>
+          <Nav />
+        </header>
+        <main className="standard-margin flex flex-col gap-20">{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }
