@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html>
-      <body className="bg-light w-screen min-h-screen flex flex-col">
+      <body className="bg-light w-screen min-h-screen flex flex-col gap-4">
         <header>
           <Nav />
         </header>

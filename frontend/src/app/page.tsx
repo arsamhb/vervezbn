@@ -1,6 +1,7 @@
 import Features from "@/components/landing/Features";
 import Hero from "@/components/landing/Hero";
 import Section from "@/components/landing/Section";
+import FAQ from "@/components/shared/FAQ";
 
 const landingInfo = [
   {
@@ -27,6 +28,7 @@ export default function Home() {
         />
       ))}
       <Features />
+      <FAQ />
     </div>
   );
 }
