@@ -1,5 +1,6 @@
 import Features from "@/components/landing/Features";
 import Hero from "@/components/landing/Hero";
+import HowItWorks from "@/components/landing/HowItWorks";
 import Section from "@/components/landing/Section";
 import FAQ from "@/components/shared/FAQ";
 
@@ -27,6 +28,7 @@ export default function Home() {
           rtl={index % 2 === 0}
         />
       ))}
+      <HowItWorks />
       <Features />
       <FAQ />
     </div>
