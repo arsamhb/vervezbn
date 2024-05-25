@@ -15,11 +15,11 @@ export default function RootLayout({
 }>) {
   return (
     <html>
-      <body className="bg-light w-screen min-h-screen flex flex-col justify-between">
+      <body className="bg-light w-screen min-h-screen flex flex-col">
         <header>
           <Nav />
         </header>
-        <main className="standard-margin flex flex-col gap-20">{children}</main>
+        <main className="flex-grow">{children}</main>
         <Footer />
       </body>
     </html>

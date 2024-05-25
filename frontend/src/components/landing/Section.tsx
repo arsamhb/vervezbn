@@ -8,11 +8,9 @@ interface ISection {
 
 const Section: React.FC<ISection> = ({ title, detail, rtl = false }) => {
   return (
-    <section
-      className={`flex ${rtl ? "flex-row" : "flex-row-reverse"} my-4 gap-10`}
-    >
-      <h2 className=" text-2xl font-bold">{title}</h2>
-      <p className=" text-2xl font-thin">{detail}</p>
+    <section className={`flex my-4 gap-10`}>
+      <p className={`w-1/5 text-2xl font-thin `}>{title}</p>
+      <p className={`w-4/5 text-2xl font-thin `}>{detail}</p>
     </section>
   );
 };
