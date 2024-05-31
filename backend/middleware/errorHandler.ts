@@ -1,13 +1,11 @@
 import { logEvents } from "../middleware/loggers";
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 
 export const errorHandler = (
   err: { name: string; message: string },
   req: Request,
-  res: Response,
-  next: NextFunction
+  res: Response
 ) => {
   logEvents(`${err.name}: ${err.message}`, "errLogs.txt");
-  // console.error(err.stack);
   res.status(500).send(err.message);
 };
