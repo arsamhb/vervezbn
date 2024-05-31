@@ -1,19 +1,21 @@
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload, VerifyErrors } from "jsonwebtoken";
+import { User } from "../types/user";
 require("dotenv").config();
+import { Response, Request } from "express";
 
 const userDB = {
   users: require("../models/users.json"),
-  setUsers: function (data: any) {
+  setUsers: function (data: Array<User>) {
     this.users = data;
   },
 };
 
-export const handleRefreshToken = async (req: any, res: any) => {
-  const { cookie } = req.cookie;
+export const handleRefreshToken = async (req: Request, res: Response) => {
+  const { cookie } = req.cookies;
   if (!cookie?.jwt) return res.status(401);
 
   const foundUser = userDB.users.find(
-    (user: any) => user.refreshToken === cookie.jwt
+    (user: User) => user.refreshToken === cookie.jwt
   );
   if (!foundUser) return res.sendStatus(403);
 
@@ -26,10 +28,10 @@ export const handleRefreshToken = async (req: any, res: any) => {
 
   jwt.verify(
     cookie.jwt,
-    process.env.REFRESH_TOKEN_SECRET,
-    (err: any, decoded: any) => {
+    process.env.REFRESH_TOKEN_SECRET as string,
+    (err: VerifyErrors | null, decoded: JwtPayload | string | undefined) => {
       if (err) return res.sendStatus(403);
-      
+
       if (
         !process.env.ACCESS_TOKEN_SECRET ||
         !process.env.REFRESH_TOKEN_SECRET
@@ -39,13 +41,17 @@ export const handleRefreshToken = async (req: any, res: any) => {
         );
         return res.sendStatus(500);
       }
-      
-      const accessToken = jwt.sign(
-        { userName: decoded.userName },
-        process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: "1m" }
-      );
-      res.json({ accessToken });
+
+      if (typeof decoded !== "string" && decoded?.userName) {
+        const accessToken = jwt.sign(
+          { userName: decoded.userName },
+          process.env.ACCESS_TOKEN_SECRET as string,
+          { expiresIn: "1m" }
+        );
+        res.json({ accessToken });
+      } else {
+        res.sendStatus(500);
+      }
     }
   );
 };

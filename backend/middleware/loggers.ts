@@ -1,5 +1,6 @@
 import { v4 as uuid } from "uuid";
 import { format } from "date-fns";
+import { Request, Response, NextFunction } from "express";
 
 import fs from "fs";
 import path from "path";
@@ -21,8 +22,12 @@ export const logEvents = async (message: string, logName: string) => {
   }
 };
 
-export const logger = async (req: any, res: any, next: any) => {
+export const logger = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   console.log(`${req.method}\t${req.url}`);
-  logEvents(`${req.method}\t${req.header.origin}\t${req.url}`, "reqLog.txt");
+  logEvents(`${req.method}\t${req.headers.origin}\t${req.url}`, "reqLog.txt");
   next();
 };

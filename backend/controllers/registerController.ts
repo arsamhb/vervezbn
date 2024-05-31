@@ -1,14 +1,17 @@
-const userDB = {
-  users: require("../models/users.json"),
-  setUsers: function (data: any) {
-    this.users = data;
-  },
-};
 import fsPromises from "fs/promises";
 import path from "path";
 import bcrypt from "bcrypt";
+import { User } from "../types/user";
+import { Request, Response } from "express";
 
-export const handleNewUser = async (req: any, res: any) => {
+const userDB = {
+  users: require("../models/users.json"),
+  setUsers: function (data: Array<User>) {
+    this.users = data;
+  },
+};
+
+export const handleNewUser = async (req: Request, res: Response) => {
   const { userName, password } = req.body;
   if (!userName || !password) {
     return res
@@ -16,7 +19,7 @@ export const handleNewUser = async (req: any, res: any) => {
       .json({ message: "Username and password are required" });
   }
   const duplicate = userDB.users.find(
-    (user: any) => user.userName === userName
+    (user: User) => user.userName === userName
   );
   if (duplicate) {
     return res.sendStatus(409);
@@ -32,7 +35,7 @@ export const handleNewUser = async (req: any, res: any) => {
     );
     console.log("New user created:", newUser);
     res.status(201).json({ success: `New user ${userName} created` });
-  } catch (err: any) {
+  } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };

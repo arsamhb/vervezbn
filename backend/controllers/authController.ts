@@ -1,20 +1,21 @@
 /* eslint-disable-next-line padded-blocks */
-
 import bcrypt from "bcrypt";
-import jwt, { JsonWebTokenError } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import fsPromises from "fs/promises";
 import path from "path";
+import { User } from "../types/user";
+import { Request, Response } from "express";
 
 // require("dotenv").config();
 
 const userDB = {
   users: require("../models/users.json"),
-  setUsers: function (data: any) {
+  setUsers: function (data: Array<User>) {
     this.users = data;
   },
 };
 
-export const handleLogin = async (req: any, res: any) => {
+export const handleLogin = async (req: Request, res: Response) => {
   const { userName, password } = req.body;
 
   if (!userName || !password) {
@@ -23,7 +24,7 @@ export const handleLogin = async (req: any, res: any) => {
       .json({ message: "Username and password are required" });
   }
   const foundUser = userDB.users.find(
-    (user: any) => user.userName === userName
+    (user: User) => user.userName === userName
   );
 
   if (!foundUser) {
@@ -40,7 +41,7 @@ export const handleLogin = async (req: any, res: any) => {
   }
 
   const matchedPassword = await bcrypt.compare(password, foundUser.password);
-  
+
   if (matchedPassword) {
     const accessToken = jwt.sign(
       { username: foundUser.userName },
@@ -54,7 +55,7 @@ export const handleLogin = async (req: any, res: any) => {
     );
 
     const otherUsers = userDB.users.filter(
-      (user: any) => user.userName !== foundUser.userName
+      (user: User) => user.userName !== foundUser.userName
     );
     const authorizedUser = { ...foundUser, refreshToken };
     userDB.setUsers([...otherUsers, authorizedUser]);

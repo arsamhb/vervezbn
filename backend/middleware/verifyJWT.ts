@@ -1,7 +1,8 @@
-import jwt from "jsonwebtoken";
+import { Request, Response, NextFunction } from "express";
+import jwt, { JwtPayload, VerifyErrors } from "jsonwebtoken";
 require("dotenv").config();
 
-export const verifyJWT = (req: any, res: any, next: any) => {
+export const verifyJWT = (req: Request, res: Response, next: NextFunction) => {
   const authHeader = req.headers.cookie;
   if (!authHeader) {
     return res.sendStatus(401);
@@ -16,14 +17,13 @@ export const verifyJWT = (req: any, res: any, next: any) => {
 
   jwt.verify(
     token,
-    process.env.REFRESH_TOKEN_SECRET,
-    (err: any, decoded: any) => {
-      console.log("tokentokentoken", token);
-      console.log("errerrerr",err);
-      
-      if (err) return res.sendStatus(403);
-      req.user = decoded.userName;
-      next();
+    process.env.REFRESH_TOKEN_SECRET as string,
+    (err: VerifyErrors | null, decoded: JwtPayload | string | undefined) => {
+      if (typeof decoded !== "string" && decoded?.userName) {
+        if (err) return res.sendStatus(403);
+        req.body.user = decoded.userName;
+        next();
+      }
     }
   );
 };

@@ -1,23 +1,24 @@
-import jwt from "jsonwebtoken";
 require("dotenv").config();
 import fsPromises from "fs/promises";
 import path from "path";
+import { User } from "../types/user";
+import { Response, Request } from "express";
 
 const userDB = {
   users: require("../models/users.json"),
-  setUsers: function (data: any) {
+  setUsers: function (data: Array<User>) {
     this.users = data;
   },
 };
 
-export const handleLogout = async (req: any, res: any) => {
-  const { cookie } = req.cookie;
+export const handleLogout = async (req: Request, res: Response) => {
+  const { cookie } = req.cookies;
   if (!cookie?.jwt) return res.status(204); // NO CONTENT
   const refreshToken = cookie.jwt;
 
   // IS REFRESH TOKEN IN DB?
   const foundUser = userDB.users.find(
-    (user: any) => user.refreshToken === refreshToken
+    (user: User) => user.refreshToken === refreshToken
   );
   if (!foundUser) {
     res.clearCookie("jwt", { httpOnly: true });
@@ -33,7 +34,7 @@ export const handleLogout = async (req: any, res: any) => {
 
   // DELETE THE REFRESH TOKEN IN THE DB
   const otherUsers = userDB.users.filter(
-    (user: any) => user.refreshToken !== foundUser.refreshToken
+    (user: User) => user.refreshToken !== foundUser.refreshToken
   );
   const currentUser = { ...foundUser, refreshToken: "" };
   userDB.setUsers([...otherUsers, currentUser]);
@@ -43,5 +44,5 @@ export const handleLogout = async (req: any, res: any) => {
   );
 
   res.clearCookie("jwt", { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 }); //secure: true ONLY ON HTTPS SERVER
-  res.sendStatus(204)
+  res.sendStatus(204);
 };

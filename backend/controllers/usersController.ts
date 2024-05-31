@@ -1,15 +1,18 @@
+import { Data } from "../types/data";
+import { Request, Response } from "express";
+
 const data = {
   users: require("../models/data.json"),
-  setUsers: function (data: any) {
+  setUsers: function (data: Array<Data>) {
     this.users = data;
   },
 };
 
-export const getAllUsers = (req: any, res: any) => {
+export const getAllUsers = (req: Request, res: Response) => {
   res.json(data.users);
 };
 
-export const createUser = (req: any, res: any) => {
+export const createUser = (req: Request, res: Response) => {
   const newUser = { firstName: "", lastName: "", id: -1 };
   if (req.body.firstName && req.body.lastName) {
     newUser.id = data.users?.length
@@ -26,8 +29,8 @@ export const createUser = (req: any, res: any) => {
   res.status(201).json({ message: `user created with ${newUser.id} id` });
 };
 
-export const updateUser = (req: any, res: any) => {
-  let user = data.users.find((user: any) => user.id === parseInt(req.body.id));
+export const updateUser = (req: Request, res: Response) => {
+  let user = data.users.find((user: Data) => user.id === parseInt(req.body.id));
   if (!user) {
     return res
       .status(400)
@@ -36,7 +39,7 @@ export const updateUser = (req: any, res: any) => {
   if (req.body.firstName) user.firstName = req.body.firstName;
   if (req.body.lastName) user.lastName = req.body.lastName;
   const filteredUsers = data.users.filter(
-    (user: any) => user.id !== parseInt(req.body.id)
+    (user: Data) => user.id !== parseInt(req.body.id)
   );
   const unsortedUsers = [...filteredUsers, user];
   console.log(unsortedUsers);
@@ -47,9 +50,9 @@ export const updateUser = (req: any, res: any) => {
   res.json({ message: `User with ${user.id} updated` });
 };
 
-export const deleteUser = (req: any, res: any) => {
+export const deleteUser = (req: Request, res: Response) => {
   const userToDelete = data.users.find(
-    (user: any) => user.id === parseInt(req.body.id)
+    (user: Data) => user.id === parseInt(req.body.id)
   );
   if (!userToDelete) {
     return res
@@ -57,13 +60,13 @@ export const deleteUser = (req: any, res: any) => {
       .json({ message: `User with ${req.body.id} not found` });
   }
   data.setUsers(
-    data.users.filter((user: any) => user.id !== parseInt(req.body.id))
+    data.users.filter((user: Data) => user.id !== parseInt(req.body.id))
   );
   res.json({ message: `User with ${req.body.id} deleted` });
 };
 
-export const getOneUser = (req: any, res: any) => {
-  let user = data.users.find((user: any) => user.id === parseInt(req.user.id));
+export const getOneUser = (req: Request, res: Response) => {
+  let user = data.users.find((user: Data) => user.id === parseInt(req.body.id));
   if (!user) {
     return res
       .status(400)
