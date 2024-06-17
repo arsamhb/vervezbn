@@ -1,16 +1,16 @@
 import path from "path";
 import express from "express";
-import { logger } from "./middleware/loggers";
+import { logger } from "@/middleware/loggers";
 import cors from "cors";
-import { errorHandler } from "./middleware/errorHandler";
-import { corsOptions } from "./config/corsOptions";
-import { verifyJWT } from "./middleware/verifyJWT";
+import { errorHandler } from "@/middleware/errorHandler";
+import { corsOptions } from "@/config/corsOptions";
+import { verifyJWT } from "@/middleware/verifyJWT";
 import cookieParser from "cookie-parser";
-import { router as rootRouter } from "./routes/root";
-import { router as registerRouter } from "./routes/register";
-import { router as authRouter } from "./routes/auth";
-import { router as refreshRouter } from "./routes/refresh";
-import { router as logoutRouter } from "./routes/logout";
+import { router as rootRouter } from "@/routes/root";
+import { router as registerRouter } from "@/routes/register";
+import { router as authRouter } from "@/routes/auth";
+import { router as refreshRouter } from "@/routes/refresh";
+import { router as logoutRouter } from "@/routes/logout";
 // import   from "./routes/subdir"
 // import {router as logoutRouter}  from "./routes/api/users"
 
