@@ -30,7 +30,7 @@ export const createUser = (req: Request, res: Response) => {
 };
 
 export const updateUser = (req: Request, res: Response) => {
-  let user = data.users.find((user: Data) => user.id === parseInt(req.body.id));
+  const user = data.users.find((user: Data) => user.id === parseInt(req.body.id));
   if (!user) {
     return res
       .status(400)
@@ -66,7 +66,7 @@ export const deleteUser = (req: Request, res: Response) => {
 };
 
 export const getOneUser = (req: Request, res: Response) => {
-  let user = data.users.find((user: Data) => user.id === parseInt(req.body.id));
+  const user = data.users.find((user: Data) => user.id === parseInt(req.body.id));
   if (!user) {
     return res
       .status(400)

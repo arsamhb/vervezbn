@@ -4,7 +4,7 @@ import { Request, Response, NextFunction } from "express";
 
 import fs from "fs";
 import path from "path";
-const fsPromises = require("fs").promises;
+import fsPromises from "fs/promises" 
 
 export const logEvents = async (message: string, logName: string) => {
   const dateTime = `${format(new Date(), "yyyyMMdd\tHH:mm:ss")}`;

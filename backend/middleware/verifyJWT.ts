@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import jwt, { JwtPayload, VerifyErrors } from "jsonwebtoken";
-require("dotenv").config();
+// import * as dotenv from "dotenv";
 
 export const verifyJWT = (req: Request, res: Response, next: NextFunction) => {
   const authHeader = req.headers.cookie;

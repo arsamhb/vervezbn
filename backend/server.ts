@@ -6,7 +6,15 @@ import { errorHandler } from "./middleware/errorHandler";
 import { corsOptions } from "./config/corsOptions";
 import { verifyJWT } from "./middleware/verifyJWT";
 import cookieParser from "cookie-parser";
-require("dotenv").config();
+import { router as rootRouter } from "./routes/root";
+import { router as registerRouter } from "./routes/register";
+import { router as authRouter } from "./routes/auth";
+import { router as refreshRouter } from "./routes/refresh";
+import { router as logoutRouter } from "./routes/logout";
+// import   from "./routes/subdir"
+// import {router as logoutRouter}  from "./routes/api/users"
+
+// import * as dotenv from "dotenv";
 
 const app = express();
 const PORT = process.env.PORT || 3500;
@@ -28,17 +36,17 @@ app.use("/", express.static(path.join(__dirname, "/public")));
 app.use("/subdir", express.static(path.join(__dirname, "/public")));
 
 // ROUTING BETWEEN ROUTES
-app.use("/", require("./routes/root"));
-app.use("/register", require("./routes/register"));
-app.use("/auth", require("./routes/auth"));
-app.use("/refresh", require("./routes/refresh"));
-app.use("/logout", require("./routes/logout"));
-app.use("/subdir", require("./routes/subdir"));
+app.use("/", rootRouter);
+app.use("/register", registerRouter);
+app.use("/auth", authRouter);
+app.use("/refresh", refreshRouter);
+app.use("/logout", logoutRouter);
+// app.use("/subdir");
 
 // PROTECTING API ROUTES BY THE VERIFY JWT MIDDLEWARE
 app.use(verifyJWT);
 // SAMPLE API
-app.use("/users", require("./routes/api/users"));
+// app.use("/users");
 
 app.get("/*", (req, res) => {
   res.status(404).sendFile(path.join(__dirname, "views", "404.html"));

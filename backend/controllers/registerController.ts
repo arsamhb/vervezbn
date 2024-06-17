@@ -11,6 +11,10 @@ const userDB = {
   },
 };
 
+export interface Error {
+  message: string;
+}
+
 export const handleNewUser = async (req: Request, res: Response) => {
   const { userName, password } = req.body;
   if (!userName || !password) {
@@ -35,7 +39,8 @@ export const handleNewUser = async (req: Request, res: Response) => {
     );
     console.log("New user created:", newUser);
     res.status(201).json({ success: `New user ${userName} created` });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    // eslint-disable-next-line
+  } catch (err: any) {
+    res.status(500).json({ message: err?.message });
   }
 };

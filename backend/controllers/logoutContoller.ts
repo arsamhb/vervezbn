@@ -1,8 +1,8 @@
-require("dotenv").config();
 import fsPromises from "fs/promises";
 import path from "path";
 import { User } from "../types/user";
 import { Response, Request } from "express";
+// import * as dotenv from "dotenv";
 
 const userDB = {
   users: require("../models/users.json"),

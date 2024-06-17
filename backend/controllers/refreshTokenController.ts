@@ -1,6 +1,6 @@
 import jwt, { JwtPayload, VerifyErrors } from "jsonwebtoken";
 import { User } from "../types/user";
-require("dotenv").config();
+// import * as dotenv from "dotenv";
 import { Response, Request } from "express";
 
 const userDB = {
