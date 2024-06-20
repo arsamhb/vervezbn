@@ -41,7 +41,7 @@ const User = sequelize.define("user", {
   },
 });
 
-User.sync()
+User.sync({ alter: true })
   .then((data) => {
     console.log("User model synced", data);
   })

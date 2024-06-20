@@ -1,9 +1,17 @@
 import { Sequelize } from "sequelize";
-export const sequelize = new Sequelize("verve", "postgres", "arsamsql4", {
-  host: "localhost",
-  port: 5432,
-  dialect: "postgres",
-});
+import * as dotenv from "dotenv";
+dotenv.config();
+
+export const sequelize = new Sequelize(
+  process.env.DB_NAME as string,
+  process.env.DB_USER as string,
+  process.env.DB_PASSWORD as string,
+  {
+    host: process.env.HOST as string,
+    port: parseInt(process.env.PORT as string),
+    dialect: "postgres",
+  }
+);
 
 export async function testDbConnection() {
   sequelize
@@ -16,4 +24,3 @@ export async function testDbConnection() {
       process.exit(1);
     });
 }
-
