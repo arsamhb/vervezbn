@@ -27,6 +27,14 @@ const User = sequelize.define("user", {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  birthDate: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
+  wallet: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+  },
   refreshToken: {
     type: DataTypes.STRING,
     allowNull: true,

@@ -11,7 +11,7 @@ import { router as registerRouter } from "./src/routes/register";
 import { router as authRouter } from "./src/routes/auth";
 import { router as refreshRouter } from "./src/routes/refresh";
 import { router as logoutRouter } from "./src/routes/logout";
-import { sequelize } from "./src/config/db";
+import { sequelize, testDbConnection } from "./src/config/db";
 // import { User } from "./src/models/User";
 
 const app = express();
@@ -31,6 +31,7 @@ app.use(cookieParser());
 
 // DATABASE CONNECTION
 sequelize;
+testDbConnection();
 
 // STATIC FILE SERVING MIDDLEWARE
 app.use("/", express.static(path.join(__dirname, "/public")));

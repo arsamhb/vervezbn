@@ -5,7 +5,7 @@ export const sequelize = new Sequelize("verve", "postgres", "arsamsql4", {
   dialect: "postgres",
 });
 
-async function testDbConnection() {
+export async function testDbConnection() {
   sequelize
     .authenticate()
     .then(() => {
@@ -16,4 +16,4 @@ async function testDbConnection() {
       process.exit(1);
     });
 }
-testDbConnection();
+
