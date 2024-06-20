@@ -4,8 +4,4 @@ export interface User {
   refreshToken?: string;
 }
 
-export interface UserAttributes extends User {
-  id: number;
-}
-
 

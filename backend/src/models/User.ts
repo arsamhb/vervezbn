@@ -1,8 +1,7 @@
-import { DataTypes, Model } from "sequelize";
+import { DataTypes } from "sequelize";
 import { sequelize } from "../config/db";
-import { UserAttributes } from "../types/user";
 
-const User = sequelize.define<Model<UserAttributes>>("user", {
+const User = sequelize.define("user", {
   id: {
     type: DataTypes.INTEGER.UNSIGNED,
     autoIncrement: true,
@@ -15,6 +14,18 @@ const User = sequelize.define<Model<UserAttributes>>("user", {
   password: {
     type: DataTypes.STRING,
     allowNull: false,
+  },
+  firstName: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  lastName: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  phoneNumber: {
+    type: DataTypes.STRING,
+    allowNull: true,
   },
   refreshToken: {
     type: DataTypes.STRING,
