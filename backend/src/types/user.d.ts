@@ -3,3 +3,9 @@ export interface User {
   password: string;
   refreshToken?: string;
 }
+
+export interface UserAttributes extends User {
+  id: number;
+}
+
+

@@ -11,7 +11,8 @@ import { router as registerRouter } from "./src/routes/register";
 import { router as authRouter } from "./src/routes/auth";
 import { router as refreshRouter } from "./src/routes/refresh";
 import { router as logoutRouter } from "./src/routes/logout";
-import { Sequelize } from "sequelize";
+import { sequelize } from "./src/config/db";
+// import { User } from "./src/models/User";
 
 const app = express();
 const PORT = process.env.PORT || 3500;
@@ -28,31 +29,8 @@ app.use(express.json());
 
 app.use(cookieParser());
 
-function connectToDb() {
-  const sequelize = new Sequelize({
-    host: "localhost",
-    port: 5432,
-    database: "verve",
-    dialect: "postgres",
-    username: "postgres",
-    password: "arsamsql4",
-  });
-
-  sequelize
-    .authenticate()
-    .then(() => {
-      console.log("Database connected successfully.");
-    })
-    .catch((error) => {
-      console.error("Unable to connect to the database:", error);
-      process.exit(1);
-    });
-
-  return sequelize;
-}
-
-const postGresClient = connectToDb();
-console.log(postGresClient);
+// DATABASE CONNECTION
+sequelize;
 
 // STATIC FILE SERVING MIDDLEWARE
 app.use("/", express.static(path.join(__dirname, "/public")));
