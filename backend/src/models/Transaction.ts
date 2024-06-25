@@ -1,7 +1,14 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../config/db";
 
+// TRANSACTION USER_ID IS A FOREIGN KEY TO THE USER ID ***** 
+
 const Transaction = sequelize.define("transaction", {
+  id: {
+    type: DataTypes.INTEGER.UNSIGNED,
+    autoIncrement: true,
+    unique: true,
+  },
   amount: {
     type: DataTypes.INTEGER.UNSIGNED,
     allowNull: false,
@@ -14,17 +21,13 @@ const Transaction = sequelize.define("transaction", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  bank: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
   gateway: {
     type: DataTypes.STRING,
     allowNull: false,
   },
 });
 
-Transaction.sync({ alter: true })
+Transaction.sync( )
   .then((data) => {
     console.log("Transaction model synced", data);
   })

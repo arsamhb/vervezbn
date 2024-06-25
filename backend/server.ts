@@ -6,11 +6,11 @@ import { errorHandler } from "./src/middleware/errorHandler";
 import { corsOptions } from "./src/config/corsOptions";
 import { verifyJWT } from "./src/middleware/verifyJWT";
 import cookieParser from "cookie-parser";
-import { router as rootRouter } from "./src/routes/root";
-import { router as registerRouter } from "./src/routes/register";
-import { router as authRouter } from "./src/routes/auth";
-import { router as refreshRouter } from "./src/routes/refresh";
-import { router as logoutRouter } from "./src/routes/logout";
+import { rootRouter } from "./src/routes/root";
+import { registerRouter } from "./src/routes/register";
+import { authRouter } from "./src/routes/auth";
+import { refreshRouter } from "./src/routes/refresh";
+import { logoutRouter } from "./src/routes/logout";
 import { sequelize, testDbConnection } from "./src/config/db";
 
 const app = express();

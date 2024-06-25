@@ -1,7 +1,15 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../config/db";
 
+// ASSOCIATIONS FOR WRITING SHOULD BE HANDLED *****
+// Writing.belongsTo(User);
+
 const Writing = sequelize.define("writing", {
+  id: {
+    type: DataTypes.INTEGER.UNSIGNED,
+    autoIncrement: true,
+    unique: true,
+  },
   content: {
     type: DataTypes.STRING,
   },
@@ -39,7 +47,7 @@ const Writing = sequelize.define("writing", {
   },
 });
 
-Writing.sync({ alter: true })
+Writing.sync()
   .then((data) => {
     console.log("Transaction model synced", data);
   })

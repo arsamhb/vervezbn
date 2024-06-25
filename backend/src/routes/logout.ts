@@ -1,6 +1,6 @@
 import express from "express";
 import { handleLogout } from "../controllers/logoutContoller";
 
-export const router = express.Router();
+export const logoutRouter = express.Router();
 
-router.post("/", handleLogout);
+logoutRouter.post("/", handleLogout);

@@ -1,6 +1,10 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../config/db";
 
+// THE ASSOCIATIONS FOR USERS SHOULD BE HANDLED *****
+// User.hasMany(Transactions)
+// User.hasMany(Writings)
+
 const User = sequelize.define("user", {
   id: {
     type: DataTypes.INTEGER.UNSIGNED,
@@ -10,6 +14,7 @@ const User = sequelize.define("user", {
   userName: {
     type: DataTypes.STRING,
     allowNull: false,
+    unique: true,
   },
   password: {
     type: DataTypes.STRING,
@@ -35,13 +40,9 @@ const User = sequelize.define("user", {
     type: DataTypes.INTEGER,
     allowNull: true,
   },
-  refreshToken: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
 });
 
-User.sync({ alter: true })
+User.sync()
   .then((data) => {
     console.log("User model synced", data);
   })
