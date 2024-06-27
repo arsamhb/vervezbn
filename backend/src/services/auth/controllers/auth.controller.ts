@@ -9,11 +9,10 @@ dotenv.config();
 
 export const handleLogin = async (req: Request, res: Response) => {
   const { username, password } = req.body;
-  if (!username || !password) {
+  if (!username || !password)
     return res
       .status(400)
       .json({ message: "Username and password are not provided." });
-  }
 
   const foundUser = await User.findOne({
     where: {
@@ -21,17 +20,15 @@ export const handleLogin = async (req: Request, res: Response) => {
     },
   });
 
-  if (!foundUser) {
+  if (!foundUser)
     return res
       .status(401)
       .json({ message: "We did not find any user with this username." });
-  }
 
   const matchedPassword = await bcrypt.compare(password, foundUser.password);
 
-  if (!matchedPassword) {
+  if (!matchedPassword)
     return res.status(401).json({ message: "Password is not correct." });
-  }
 
   if (!process.env.ACCESS_TOKEN_SECRET || !process.env.REFRESH_TOKEN_SECRET) {
     console.error(

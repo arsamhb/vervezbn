@@ -1,5 +1,5 @@
 import { DataTypes, Model } from "sequelize";
-import { sequelize } from "../config/db";
+import { sequelize } from "../../config/db";
 import { UserAttributes, UserCreationAttributes } from "./user.types";
 
 // THE ASSOCIATIONS FOR USERS SHOULD BE HANDLED *****

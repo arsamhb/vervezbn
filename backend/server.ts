@@ -7,11 +7,12 @@ import { corsOptions } from "./src/config/corsOptions";
 import { verifyJWT } from "./src/middleware/verifyJWT";
 import cookieParser from "cookie-parser";
 import { rootRouter } from "./src/routes/root";
+import { refreshRouter } from "./src/routes/refresh";
+import { sequelize, testDbConnection } from "./src/config/db";
+
 import { registerRouter } from "./src/routes/register";
 import { authRouter } from "./src/routes/auth";
-import { refreshRouter } from "./src/routes/refresh";
 import { logoutRouter } from "./src/routes/logout";
-import { sequelize, testDbConnection } from "./src/config/db";
 
 const app = express();
 const PORT = process.env.PORT || 3500;
@@ -41,12 +42,10 @@ app.use("/", rootRouter);
 app.use("/register", registerRouter);
 app.use("/auth", authRouter);
 app.use("/refresh", refreshRouter);
-app.use("/logout", logoutRouter);
 
-// PROTECTING API ROUTES BY THE VERIFY JWT MIDDLEWARE
 app.use(verifyJWT);
-// SAMPLE API
-// app.use("/users");
+
+app.use("/logout", logoutRouter);
 
 app.get("/*", (req, res) => {
   res.status(404).sendFile(path.join(__dirname, "views", "404.html"));
