@@ -27,8 +27,19 @@ export const handleNewUser = async (req: Request, res: Response) => {
       .json({ message: "A user with this email already exist" });
 
   const hashedPassword = await bcrypt.hash(password, 12);
-  await User.create({
+  console.log("HASHED PASSWORD - >>>>>>>> ", hashedPassword);
+
+  User.create({
     user_name: username,
     password: hashedPassword,
-  });
+  })
+    .then((data) => {
+      console.log(data.toJSON().user_name);
+      res
+        .status(201)
+        .json({ success: `New user ${data.toJSON().user_name} created!` });
+    })
+    .catch((err) => {
+      res.status(500).json({ message: `Error -> ${err}` });
+    });
 };

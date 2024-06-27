@@ -4,8 +4,9 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const handleLogout = async (req: Request, res: Response) => {
-  const { cookie } = req.cookies;
-  if (!cookie?.jwt)
+  const cookie = req.cookies;
+
+  if (!cookie.jwt)
     return res.status(204).json({ message: "No cookie or token provided" });
 
   if (!process.env.REFRESH_TOKEN_SECRET) {
