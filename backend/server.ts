@@ -1,5 +1,4 @@
 import "module-alias/register";
-import path from "path";
 import express from "express";
 import { logger } from "./src/middleware/loggers";
 import cors from "cors";
@@ -23,7 +22,6 @@ app.use(logger);
 // CORS
 app.use(cors(corsOptions));
 
-// BUILT-IN MIDDLEWARES
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
@@ -33,11 +31,6 @@ app.use(cookieParser());
 sequelize;
 testDbConnection();
 
-// STATIC FILE SERVING MIDDLEWARE
-app.use("/", express.static(path.join(__dirname, "/public")));
-app.use("/subdir", express.static(path.join(__dirname, "/public")));
-
-// ROUTING BETWEEN ROUTES
 app.use("/", rootRouter);
 app.use("/register", registerRouter);
 app.use("/auth", authRouter);
@@ -47,7 +40,7 @@ app.use(verifyJWT);
 app.use("/logout", logoutRouter);
 
 app.get("/*", (req, res) => {
-  res.status(404).sendFile(path.join(__dirname, "views", "404.html"));
+  res.status(404).json({ message: "We could not find the page you want." });
 });
 
 app.use(errorHandler);
