@@ -1,3 +1,4 @@
+import 'module-alias/register';
 import path from "path";
 import express from "express";
 import { logger } from "./src/middleware/loggers";
@@ -13,6 +14,7 @@ import { sequelize, testDbConnection } from "./src/config/db";
 import { registerRouter } from "./src/routes/register";
 import { authRouter } from "./src/routes/auth";
 import { logoutRouter } from "./src/routes/logout";
+// import { User } from "@/services/auth/model";
 
 const app = express();
 const PORT = process.env.PORT || 3500;
