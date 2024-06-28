@@ -29,6 +29,7 @@ User.init(
       type: DataTypes.INTEGER.UNSIGNED,
       autoIncrement: true,
       primaryKey: true,
+      unique: true,
     },
     user_name: {
       type: DataTypes.STRING,
