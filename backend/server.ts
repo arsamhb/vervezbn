@@ -6,13 +6,16 @@ import { errorHandler } from "./src/middleware/errorHandler";
 import { corsOptions } from "./src/config/corsOptions";
 import { verifyJWT } from "./src/middleware/verifyJWT";
 import cookieParser from "cookie-parser";
-import { rootRouter } from "./src/routes/root";
-import { refreshRouter } from "./src/routes/refresh";
 import { sequelize, testDbConnection } from "./src/config/db";
-import { registerRouter } from "./src/routes/register";
-import { authRouter } from "./src/routes/auth";
-import { logoutRouter } from "./src/routes/logout";
 
+import {
+  rootRouter,
+  refreshRouter,
+  registerRouter,
+  authRouter,
+  logoutRouter,
+} from "@/routes/index";
+  
 const app = express();
 const PORT = process.env.PORT || 3500;
 
