@@ -1,21 +1,21 @@
-import path from "path";
+import "module-alias/register";
 import express from "express";
-import { logger } from "./middleware/loggers";
+import { logger } from "./src/middleware/loggers";
 import cors from "cors";
-import { errorHandler } from "./middleware/errorHandler";
-import { corsOptions } from "./config/corsOptions";
-import { verifyJWT } from "./middleware/verifyJWT";
+import { errorHandler } from "./src/middleware/errorHandler";
+import { corsOptions } from "./src/config/corsOptions";
+import { verifyJWT } from "./src/middleware/verifyJWT";
 import cookieParser from "cookie-parser";
-import { router as rootRouter } from "./routes/root";
-import { router as registerRouter } from "./routes/register";
-import { router as authRouter } from "./routes/auth";
-import { router as refreshRouter } from "./routes/refresh";
-import { router as logoutRouter } from "./routes/logout";
-// import   from "./routes/subdir"
-// import {router as logoutRouter}  from "./routes/api/users"
+import { sequelize, testDbConnection } from "./src/config/db";
 
-// import * as dotenv from "dotenv";
-
+import {
+  rootRouter,
+  refreshRouter,
+  registerRouter,
+  authRouter,
+  logoutRouter,
+} from "@/routes/index";
+  
 const app = express();
 const PORT = process.env.PORT || 3500;
 
@@ -25,31 +25,25 @@ app.use(logger);
 // CORS
 app.use(cors(corsOptions));
 
-// BUILT-IN MIDDLEWARES
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use(cookieParser());
 
-// STATIC FILE SERVING MIDDLEWARE
-app.use("/", express.static(path.join(__dirname, "/public")));
-app.use("/subdir", express.static(path.join(__dirname, "/public")));
+// DATABASE CONNECTION
+sequelize;
+testDbConnection();
 
-// ROUTING BETWEEN ROUTES
 app.use("/", rootRouter);
 app.use("/register", registerRouter);
 app.use("/auth", authRouter);
 app.use("/refresh", refreshRouter);
-app.use("/logout", logoutRouter);
-// app.use("/subdir");
 
-// PROTECTING API ROUTES BY THE VERIFY JWT MIDDLEWARE
 app.use(verifyJWT);
-// SAMPLE API
-// app.use("/users");
+app.use("/logout", logoutRouter);
 
 app.get("/*", (req, res) => {
-  res.status(404).sendFile(path.join(__dirname, "views", "404.html"));
+  res.status(404).json({ message: "We could not find the page you want." });
 });
 
 app.use(errorHandler);
