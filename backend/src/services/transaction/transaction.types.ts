@@ -1,13 +1,18 @@
+import { Optional } from "sequelize";
+
 export enum TransactionStatus {
   success = "success",
   failed = "failed",
   unknown = "unknown",
 }
 
-export interface Transaction {
+export interface TransactionAttributes {
+  id: number;
   amount: number;
   user_id: string;
   status: TransactionStatus;
-  bank: string;
   gateway: string;
 }
+
+export interface TransactionCreationAttributes
+  extends Optional<TransactionAttributes, "id"> {}

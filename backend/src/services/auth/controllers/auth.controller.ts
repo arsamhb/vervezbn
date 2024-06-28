@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { Request, Response } from "express";
 import dotenv from "dotenv";
-import { User } from "../model";
+import { User } from "../user.model";
 
 dotenv.config();
 

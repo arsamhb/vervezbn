@@ -1,9 +1,10 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../../config/db";
 import { UserAttributes, UserCreationAttributes } from "./user.types";
+import { Transaction } from "@/models/transaction";
 
 // THE ASSOCIATIONS FOR USERS SHOULD BE HANDLED *****
-// User.hasMany(Transactions)
+//
 // User.hasMany(Writings)
 
 class User
@@ -30,6 +31,7 @@ User.init(
       autoIncrement: true,
       primaryKey: true,
       unique: true,
+      allowNull: false,
     },
     user_name: {
       type: DataTypes.STRING,
@@ -69,6 +71,8 @@ User.init(
     tableName: "users",
   }
 );
+
+User.hasMany(Transaction);
 
 User.sync({ alter: true })
   .then((data) => {
