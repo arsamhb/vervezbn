@@ -10,9 +10,9 @@ class Transaction
   extends Model<TransactionAttributes, TransactionCreationAttributes>
   implements TransactionAttributes
 {
-  public id: number;
+  public id!: number;
   public amount: number;
-  public user_id: string;
+  public user_id: number;
   public status: TransactionStatus;
   public gateway: string;
 }
@@ -28,6 +28,7 @@ Transaction.init(
     },
     amount: {
       type: DataTypes.INTEGER,
+      allowNull: false,
     },
     gateway: {
       type: DataTypes.STRING,

@@ -9,7 +9,7 @@ export enum TransactionStatus {
 export interface TransactionAttributes {
   id: number;
   amount: number;
-  user_id: string;
+  user_id: number;
   status: TransactionStatus;
   gateway: string;
 }
