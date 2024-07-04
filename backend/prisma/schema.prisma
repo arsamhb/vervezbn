@@ -1,5 +1,6 @@
 // https://chatgpt.com/c/bd92954d-d2ae-4f6e-8195-d5d279e91c1d     -> ask for help in indexing
 
+// the purchase process is not handled :|
 
 generator client {
   provider = "prisma-client-js"
