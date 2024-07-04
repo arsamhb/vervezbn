@@ -1,12 +1,5 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// https://chatgpt.com/c/bd92954d-d2ae-4f6e-8195-d5d279e91c1d     -> ask for help in indexing
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
-// THIS COMMAND DO THE MIGRATES
-// MIGRATION IMPLEMENTS ALL THE CHANGES YOU MADE INTO THE DATA BASE
-// npx prisma migrate aRandomName
 
 generator client {
   provider = "prisma-client-js"
@@ -18,43 +11,59 @@ datasource db {
 }
 
 model User {
-  id        String   @id @unique @default(uuid())
-  email     String   @unique
+  id        String    @id @unique @default(uuid())
+  email     String    @unique
   password  String
   firstName String?
   lastName  String?
-  role      Role     @default(USER)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  // writing     writing[]
-  // transaction transaction[]
+  role      Role      @default(USER)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  wallet    Wallet?
+  writing   Writing[]
+}
+
+model Wallet {
+  id           String        @id @unique @default(uuid())
+  userId       String        @unique
+  balance      Int           @default(0)
+  user         User          @relation(fields: [userId], references: [id])
+  transactions Transaction[]
+}
+
+model Transaction {
+  id        String          @id @unique @default(uuid())
+  walletId  String
+  amount    Int
+  type      TransactionType
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+  wallet    Wallet          @relation(fields: [walletId], references: [id])
+}
+
+model Writing {
+  id           String       @id @unique @default(uuid())
+  userId       String
+  content      String
+  cueId        String
+  writingLevel WritingLevel
+  createdAt    DateTime     @default(now())
+  user         User         @relation(fields: [userId], references: [id])
+}
+
+enum WritingLevel {
+  REGULAR
+  PREMIUM
+}
+
+enum TransactionType {
+  CREDIT
+  DEBIT
 }
 
 enum Role {
   USER
   ADMIN
 }
-
-// model writing {
-//   id                       String   @id @unique @default(uuid())
-//   candidate                User     @relation(fields: [userId], references: [id])
-//   userId                   String
-//   createdAt                DateTime @default(now())
-//   updatedAt                DateTime @updatedAt
-//   overallScore             Int
-//   coherenceCohesion        Int
-//   lexicalResource          Int
-//   GrammaticalRangeAccuracy Int
-//   TaskResponse             Int
-//   TaskAchievement          Int
-// }
-
-// model transaction {
-//   id        String   @id @unique @default(uuid())
-//   User      User     @relation(fields: [userId], references: [id])
-//   userId    String
-//   createdAt DateTime @default(now())
-//   updatedAt DateTime @updatedAt
-// }
 
 // @@unique @@index @@id  block level attribute
