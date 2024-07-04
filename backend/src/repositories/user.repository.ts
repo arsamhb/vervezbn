@@ -1,4 +1,4 @@
-// import prisma from "../database/prisma-client";
+import prisma from "../database/prisma-client";
 
 export async function main() {
   //   const user = await prisma.user.create({
@@ -23,3 +23,11 @@ export async function main() {
 //   .finally(async () => {
 //     await prisma.$disconnect;
 //   });
+
+export async function findUserWithEmail(userEmail: string) {
+  return await prisma.user.findUnique({
+    where: {
+      email: userEmail,
+    },
+  });
+}
