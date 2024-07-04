@@ -24,7 +24,7 @@ export async function main() {
 //     await prisma.$disconnect;
 //   });
 
-export async function findUserWithEmail(userEmail: string) {
+export async function findUserByEmail(userEmail: string) {
   return await prisma.user.findUnique({
     where: {
       email: userEmail,

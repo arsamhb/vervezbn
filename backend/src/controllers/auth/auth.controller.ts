@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { Request, Response } from "express";
 import dotenv from "dotenv";
-import { findUserWithEmail } from "@/repositories/user.repository";
+import { findUserByEmail } from "@/repositories/user.repository";
 
 dotenv.config();
 
@@ -14,7 +14,7 @@ export const handleLogin = async (req: Request, res: Response) => {
       .status(400)
       .json({ message: "Username and password are not provided." });
 
-  const foundUser = await findUserWithEmail(email);
+  const foundUser = await findUserByEmail(email);
 
   if (!foundUser)
     return res

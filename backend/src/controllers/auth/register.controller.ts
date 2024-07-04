@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import {
-  findUserWithEmail,
+  findUserByEmail,
   registerNewUser,
 } from "@/repositories/user.repository";
 import { Request, Response } from "express";
@@ -18,7 +18,7 @@ export const handleNewUser = async (req: Request, res: Response) => {
       message: "Username and password are not in appropriate format.",
     });
 
-  const duplicate = await findUserWithEmail(email);
+  const duplicate = await findUserByEmail(email);
 
   if (duplicate)
     return res
