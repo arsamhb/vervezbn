@@ -1,0 +1,60 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+// THIS COMMAND DO THE MIGRATES
+// MIGRATION IMPLEMENTS ALL THE CHANGES YOU MADE INTO THE DATA BASE
+// npx prisma migrate aRandomName
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @unique @default(uuid())
+  firstName String
+  lastName  String
+  password  String
+  email     String   @unique
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  // writing     writing[]
+  // transaction transaction[]
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+// model writing {
+//   id                       String   @id @unique @default(uuid())
+//   candidate                User     @relation(fields: [userId], references: [id])
+//   userId                   String
+//   createdAt                DateTime @default(now())
+//   updatedAt                DateTime @updatedAt
+//   overallScore             Int
+//   coherenceCohesion        Int
+//   lexicalResource          Int
+//   GrammaticalRangeAccuracy Int
+//   TaskResponse             Int
+//   TaskAchievement          Int
+// }
+
+// model transaction {
+//   id        String   @id @unique @default(uuid())
+//   User      User     @relation(fields: [userId], references: [id])
+//   userId    String
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+// }
+
+// @@unique @@index @@id  block level attribute
