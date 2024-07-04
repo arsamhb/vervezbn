@@ -1,46 +1,39 @@
-// import bcrypt from "bcrypt";
-// import { User } from "@/models/user.model";
+import bcrypt from "bcrypt";
+import {
+  findUserWithEmail,
+  registerNewUser,
+} from "@/repositories/user.repository";
 import { Request, Response } from "express";
 
 export const handleNewUser = async (req: Request, res: Response) => {
-  console.log(req,res);
-  
-  // const { username, password } = req.body;
+  const { email, password } = req.body;
 
-  // if (!username || !password)
-  //   return res
-  //     .status(400)
-  //     .json({ message: "Username and password are not provided." });
+  if (!email || !password)
+    return res
+      .status(400)
+      .json({ message: "Username and password are not provided." });
 
-  // if (typeof username !== "string" || typeof password !== "string")
-  //   return res.status(400).json({
-  //     message: "Username and password are not in appropriate format.",
-  //   });
+  if (typeof email !== "string" || typeof password !== "string")
+    return res.status(400).json({
+      message: "Username and password are not in appropriate format.",
+    });
 
-  // const duplicate = await User.findOne({
-  //   where: {
-  //     user_name: username,
-  //   },
-  // });
+  const duplicate = await findUserWithEmail(email);
 
-  // if (duplicate)
-  //   return res
-  //     .status(409)
-  //     .json({ message: "A user with this email already exist" });
+  if (duplicate)
+    return res
+      .status(409)
+      .json({ message: "A user with this email already exist" });
 
-  // const hashedPassword = await bcrypt.hash(password, 12);
+  const hashedPassword = await bcrypt.hash(password, 12);
 
-  // User.create({
-  //   user_name: username,
-  //   password: hashedPassword,
-  // })
-  //   .then((data) => {
-  //     console.log(data.toJSON().user_name);
-  //     res
-  //       .status(201)
-  //       .json({ success: `New user ${data.toJSON().user_name} created!` });
-  //   })
-  //   .catch((err) => {
-  //     res.status(500).json({ message: `Error -> ${err}` });
-  //   });
+  registerNewUser(email, hashedPassword)
+    .then((data) => {
+      res
+        .status(201)
+        .json({ success: `New user with ${data.email} mail created!` });
+    })
+    .catch((err) => {
+      res.status(500).json({ message: `Error -> ${err}` });
+    });
 };

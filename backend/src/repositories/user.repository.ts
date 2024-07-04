@@ -31,3 +31,7 @@ export async function findUserWithEmail(userEmail: string) {
     },
   });
 }
+
+export async function registerNewUser(email: string, password: string) {
+  return await prisma.user.create({ data: { email, password } });
+}

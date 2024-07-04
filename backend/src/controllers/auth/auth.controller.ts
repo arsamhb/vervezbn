@@ -26,6 +26,7 @@ export const handleLogin = async (req: Request, res: Response) => {
   if (!matchedPassword)
     return res.status(401).json({ message: "Password is not correct." });
 
+  // convert it to a util called env variable guard
   if (!process.env.ACCESS_TOKEN_SECRET || !process.env.REFRESH_TOKEN_SECRET) {
     console.error(
       "ACCESS_TOKEN_SECRET is not defined in environment variables",
