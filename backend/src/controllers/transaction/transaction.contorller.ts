@@ -6,7 +6,7 @@ import {
 } from "../../repositories/wallet.repositry";
 
 export const addCoins = async (req: Request, res: Response) => {
-  const userId = req.body.user.id; // write a middleware to manage this ????
+  const userId = req.body.user.id;
   const { amount } = req.body;
 
   try {

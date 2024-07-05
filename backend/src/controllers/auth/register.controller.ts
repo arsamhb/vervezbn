@@ -4,6 +4,7 @@ import {
   registerNewUser,
 } from "@/repositories/user.repository";
 import { Request, Response } from "express";
+import { createWallet } from "@/repositories/wallet.repositry";
 
 export const handleNewUser = async (req: Request, res: Response) => {
   const { email, password } = req.body;
@@ -27,13 +28,13 @@ export const handleNewUser = async (req: Request, res: Response) => {
 
   const hashedPassword = await bcrypt.hash(password, 12);
 
-  registerNewUser(email, hashedPassword)
-    .then((data) => {
-      res
-        .status(201)
-        .json({ success: `New user with ${data.email} mail created!` });
-    })
-    .catch((err) => {
-      res.status(500).json({ message: `Error -> ${err}` });
+  try {
+    const createdUser = await registerNewUser(email, hashedPassword);
+    const createdUserWallet = await createWallet(createdUser.id);
+    res.status(201).json({
+      success: `New user with ${createdUser.email} created. Its wallet id is ${createdUserWallet.id}`,
     });
+  } catch (error) {
+    res.status(500).json({ message: `Error -> ${error}` });
+  }
 };
