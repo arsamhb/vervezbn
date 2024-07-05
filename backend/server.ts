@@ -7,7 +7,6 @@ import { corsOptions } from "./src/config/corsOptions";
 import { verifyJWT } from "./src/middleware/verifyJWT";
 import cookieParser from "cookie-parser";
 import { sequelize, testDbConnection } from "./src/config/db";
-import { main } from "@/repositories/user.repository";
 
 import {
   rootRouter,
@@ -16,7 +15,6 @@ import {
   authRouter,
   logoutRouter,
 } from "@/routes/index";
-import prisma from "@/database/prisma-client";
 
 const app = express();
 const PORT = process.env.PORT || 3500;
@@ -31,14 +29,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use(cookieParser());
-
-main()
-  .catch((err) => {
-    console.log(err);
-  })
-  .finally(async () => {
-    prisma.$disconnect;
-  });
 
 // DATABASE CONNECTION
 sequelize;
