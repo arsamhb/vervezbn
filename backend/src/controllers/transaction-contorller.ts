@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { createTransaction } from "../../repositories/transaction-repository";
+import { createTransaction } from "../repositories/transaction-repository";
 import {
   getWalletByUserId,
   updateWalletBalance,
-} from "../../repositories/wallet-repositry";
+} from "../repositories/wallet-repositry";
 
 export const addCoins = async (req: Request, res: Response) => {
   const userId = req.body.user.id;

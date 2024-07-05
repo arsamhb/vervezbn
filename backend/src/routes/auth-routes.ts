@@ -1,8 +1,8 @@
 import express from "express";
-import { handleLogout } from "../controllers/auth/logout-controller";
-import { handleLogin } from "../controllers/auth/auth-controller";
-import { handleRefreshToken } from "../controllers/auth/refreshToken-controller";
-import { handleNewUser } from "../controllers/auth/register-controller";
+import { handleLogout } from "../controllers/auth-controller";
+import { handleLogin } from "../controllers/auth-controller";
+import { handleRefreshToken } from "../controllers/auth-controller";
+import { handleNewUser } from "../controllers/auth-controller";
 
 export const registerRouter = express.Router();
 export const refreshRouter = express.Router();
