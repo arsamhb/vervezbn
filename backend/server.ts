@@ -2,8 +2,8 @@ import "module-alias/register";
 import express from "express";
 import { logger } from "./src/middleware/loggers";
 import cors from "cors";
-import { errorHandler } from "./src/middleware/errorHandler";
-import { corsOptions } from "./src/config/corsOptions";
+import { errorHandler } from "./src/middleware/error-handler";
+import { corsOptions } from "./src/config/cors-options";
 import { verifyJWT } from "./src/middleware/verifyJWT";
 import cookieParser from "cookie-parser";
 import { sequelize, testDbConnection } from "./src/config/db";
@@ -14,8 +14,8 @@ import {
   logoutRouter,
 } from "@/routes/auth-routes";
 import { rootRouter } from "@/routes/index";
-import { purchaseWritingRouter } from "@/routes/writing.routes";
-import { addCoinRouter } from "@/routes/transaction.routes";
+import { purchaseWritingRouter } from "@/routes/writing-routes";
+import { addCoinRouter } from "@/routes/transaction-routes";
 
 const app = express();
 const PORT = process.env.PORT || 3500;
