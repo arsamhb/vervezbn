@@ -2,9 +2,9 @@ import bcrypt from "bcrypt";
 import {
   findUserByEmail,
   registerNewUser,
-} from "@/repositories/user.repository";
+} from "../../repositories/user.repository";
 import { Request, Response } from "express";
-import { createWallet } from "@/repositories/wallet.repositry";
+import { createWallet } from "../../repositories/wallet.repositry";
 
 export const handleNewUser = async (req: Request, res: Response) => {
   const { email, password } = req.body;

@@ -7,14 +7,15 @@ import { corsOptions } from "./src/config/corsOptions";
 import { verifyJWT } from "./src/middleware/verifyJWT";
 import cookieParser from "cookie-parser";
 import { sequelize, testDbConnection } from "./src/config/db";
-
 import {
-  rootRouter,
   refreshRouter,
   registerRouter,
   authRouter,
   logoutRouter,
-} from "@/routes/index";
+} from "@/routes/auth-routes";
+import { rootRouter } from "@/routes/index";
+import { purchaseWritingRouter } from "@/routes/writing.routes";
+import { addCoinRouter } from "@/routes/transaction.routes";
 
 const app = express();
 const PORT = process.env.PORT || 3500;
@@ -41,6 +42,8 @@ app.use("/refresh", refreshRouter);
 
 app.use(verifyJWT);
 app.use("/logout", logoutRouter);
+app.use("/purchase-writing", purchaseWritingRouter);
+app.use("/add-coins", addCoinRouter);
 
 app.get("/*", (req, res) => {
   res.status(404).json({ message: "We could not find the page you want." });

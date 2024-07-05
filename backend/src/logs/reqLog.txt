@@ -223,3 +223,9 @@
 20240627	15:15:39	e7d9293a-c3e9-4f4f-85a8-c8d7ffdb1a0f	POST	undefined	/auth
 20240627	15:16:06	7625f9e2-9113-4930-a89e-e4e7fa85b51b	POST	undefined	/auth
 20240627	15:16:15	f95f54d5-26f0-4443-b141-9630d685692d	POST	undefined	/logout
+20240705	14:57:24	04314314-63d0-4221-a399-cc47d78479d1	POST	undefined	/register
+20240705	14:57:56	5490f636-9242-4645-af01-d1f4c52be3a5	POST	undefined	/auth
+20240705	15:06:25	75aa1311-09e8-4e3d-b3e9-f0c40ad279d2	POST	undefined	/auth
+20240705	15:08:14	234e17d8-f55d-4340-9c97-c146f5cbca49	POST	undefined	/auth
+20240705	15:08:25	ef855844-d05b-49a2-bbc9-055b1b6b7475	POST	undefined	/add-coins
+20240705	15:10:49	f49cca90-86df-456c-9911-79212cbf6c13	POST	undefined	/purchase-writing
