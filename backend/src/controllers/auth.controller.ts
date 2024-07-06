@@ -115,18 +115,18 @@ export const refreshToken = async (req: Request, res: Response) => {
   );
 };
 
-export const newUser = async (req: Request, res: Response) => {
+export const signUp = async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
-  if (!email || !password)
-    return res
-      .status(400)
-      .json({ message: "Username and password are not provided." });
+  // if (!email || !password)
+  //   return res
+  //     .status(400)
+  //     .json({ message: "Username and password are not provided." });
 
-  if (typeof email !== "string" || typeof password !== "string")
-    return res.status(400).json({
-      message: "Username and password are not in appropriate format.",
-    });
+  // if (typeof email !== "string" || typeof password !== "string")
+  //   return res.status(400).json({
+  //     message: "Username and password are not in appropriate format.",
+  //   });
 
   const duplicate = await findUserByEmail(email);
 
