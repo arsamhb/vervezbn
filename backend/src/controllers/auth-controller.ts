@@ -7,18 +7,12 @@ import {
   findUserByEmail,
   registerNewUser,
 } from "../repositories/user-repository";
-import { createWallet } from "../repositories/wallet-repositry";
 import { generateReferralCode } from "../utils/generate-referral-code"
 
 dotenv.config();
 
 export const handleLogin = async (req: Request, res: Response) => {
   const { email, password } = req.body;
-
-  // if (!email || !password)
-  //   return res
-  //     .status(400)
-  //     .json({ message: "Username and password are not provided." });
 
   const foundUser = await findUserByEmail(email);
 
@@ -146,9 +140,8 @@ export const handleNewUser = async (req: Request, res: Response) => {
   try {
     const referralCode = await generateReferralCode()
     const createdUser = await registerNewUser(email, hashedPassword, referralCode);
-    const createdUserWallet = await createWallet(createdUser.id);
     res.status(201).json({
-      success: `New user with ${createdUser.email} created. Its wallet id is ${createdUserWallet.id}`,
+      success: `New user with ${createdUser.email} created.`,
     });
   } catch (error) {
     res.status(500).json({ message: `Error -> ${error}` });
