@@ -6,7 +6,7 @@ import jwt, { JwtPayload, VerifyErrors } from "jsonwebtoken";
 import {
   findUserByEmail,
   registerNewUser,
-} from "../repositories/user-repository";
+} from "../repositories/user.repository";
 import { generateReferralCode } from "../utils/generate-referral-code"
 
 dotenv.config();

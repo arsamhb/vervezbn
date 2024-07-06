@@ -1,4 +1,4 @@
-import { WalletDTO } from "./user-dto";
+import { WalletDTO } from "./user.dto";
 
 export interface Transaction {
   id: string;

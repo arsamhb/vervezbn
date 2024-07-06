@@ -1,5 +1,5 @@
 import { v4 as uuid } from "uuid"
-import { isReferralCodeUnique } from "../repositories/user-repository"
+import { isReferralCodeUnique } from "../repositories/user.repository"
 
 export const generateReferralCode = async ():Promise<string> => {
     let referralCode: string = "";

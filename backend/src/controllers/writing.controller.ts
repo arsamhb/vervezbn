@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import {
   updateWalletBalance,
-} from "../repositories/wallet-repositry";
-import { createTransaction } from "../repositories/transaction-repository";
-import { createWriting } from "../repositories/writing-repository";
+} from "../repositories/wallet.repositry";
+import { createTransaction } from "../repositories/transaction.repository";
+import { createWriting } from "../repositories/writing.repository";
 import dotenv from "dotenv";
-import { getUserById } from "@/repositories/user-repository";
+import { getUserById } from "@/repositories/user.repository";
 
 dotenv.config();
 

@@ -1,5 +1,5 @@
 import express from "express";
-import { newUser, refreshToken, logout, login } from "../controllers/auth-controller";
+import { newUser, refreshToken, logout, login } from "../controllers/auth.controller";
 
 import { validateLogin } from "@/middleware/login-middleware"
 import { LoginSchema } from "@/schema/auth-schema"
