@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { addCoins } from "../controllers/transaction-contorller";
+import { chargeWallet } from "../controllers/transaction-contorller";
 
-export const addCoinRouter = Router();
+export const chargeWalletRouter = Router();
 
-addCoinRouter.post("/", addCoins);
+chargeWalletRouter.post("/", chargeWallet);

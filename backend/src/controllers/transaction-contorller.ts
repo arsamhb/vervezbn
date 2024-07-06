@@ -5,7 +5,7 @@ import {
 } from "../repositories/wallet-repositry";
 import { getUserById } from "@/repositories/user-repository";
 
-export const addCoins = async (req: Request, res: Response) => {
+export const chargeWallet = async (req: Request, res: Response) => {
   const { amount, id: userId } = req.body;
 
   try {
