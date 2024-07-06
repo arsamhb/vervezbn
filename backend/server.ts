@@ -6,7 +6,6 @@ import { errorHandler } from "./src/middleware/error-handler";
 import { corsOptions } from "./src/config/cors-options";
 import { verifyJWT } from "./src/middleware/verifyJWT";
 import cookieParser from "cookie-parser";
-import { sequelize, testDbConnection } from "./src/config/db";
 import {
   refreshRouter,
   registerRouter,
@@ -30,10 +29,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use(cookieParser());
-
-// DATABASE CONNECTION
-sequelize;
-testDbConnection();
 
 app.use("/", rootRouter);
 app.use("/register", registerRouter);
