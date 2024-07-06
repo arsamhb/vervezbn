@@ -9,9 +9,9 @@ export interface IWritingData {
 }
 
 export const createWriting = async (writingData: IWritingData) => {
-  return await prisma.writing.create({ data: writingData });
+  return  prisma.writing.create({ data: writingData });
 };
 
 export const deliverWritingToUser = async (id: string) => {
-  return await prisma.writing.findUnique({ where: { id: id } });
+  return  prisma.writing.findUnique({ where: { id: id } });
 };
