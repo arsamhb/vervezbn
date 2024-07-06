@@ -11,7 +11,7 @@ import { generateReferralCode } from "../utils/generate-referral-code"
 
 dotenv.config();
 
-export const handleLogin = async (req: Request, res: Response) => {
+export const login = async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
   const foundUser = await findUserByEmail(email);
@@ -57,7 +57,7 @@ export const handleLogin = async (req: Request, res: Response) => {
   res.json({ accessToken });
 };
 
-export const handleLogout = async (req: Request, res: Response) => {
+export const logout = async (req: Request, res: Response) => {
   const cookie = req.cookies;
 
   if (!cookie.jwt)
@@ -77,7 +77,7 @@ export const handleLogout = async (req: Request, res: Response) => {
   return res.status(204).json({ message: "Logged out" });
 };
 
-export const handleRefreshToken = async (req: Request, res: Response) => {
+export const refreshToken = async (req: Request, res: Response) => {
   const { cookie } = req.cookies;
   if (!cookie?.jwt) return res.status(401);
 
@@ -115,7 +115,7 @@ export const handleRefreshToken = async (req: Request, res: Response) => {
   );
 };
 
-export const handleNewUser = async (req: Request, res: Response) => {
+export const newUser = async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
   if (!email || !password)
