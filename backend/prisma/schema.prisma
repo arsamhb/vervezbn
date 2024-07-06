@@ -12,16 +12,18 @@ datasource db {
 }
 
 model User {
-  id        String    @id @unique @default(uuid())
-  email     String    @unique
-  password  String
-  firstName String?
-  lastName  String?
-  role      Role      @default(USER)
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  wallet    Wallet?
-  writing   Writing[]
+  id           String    @id @unique @default(uuid())
+  email        String    @unique
+  password     String
+  firstName    String?
+  lastName     String?
+  role         Role      @default(USER)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  wallet       Wallet?
+  writing      Writing[]
+  referredBy   String?
+  referralCode String    @unique
 }
 
 model Wallet {

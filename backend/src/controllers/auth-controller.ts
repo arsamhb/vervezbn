@@ -8,6 +8,7 @@ import {
   registerNewUser,
 } from "../repositories/user-repository";
 import { createWallet } from "../repositories/wallet-repositry";
+import { generateReferralCode } from "../utils/generate-referral-code"
 
 dotenv.config();
 
@@ -142,7 +143,8 @@ export const handleNewUser = async (req: Request, res: Response) => {
   const hashedPassword = await bcrypt.hash(password, 12);
 
   try {
-    const createdUser = await registerNewUser(email, hashedPassword);
+    const referralCode = await generateReferralCode()
+    const createdUser = await registerNewUser(email, hashedPassword, referralCode);
     const createdUserWallet = await createWallet(createdUser.id);
     res.status(201).json({
       success: `New user with ${createdUser.email} created. Its wallet id is ${createdUserWallet.id}`,
