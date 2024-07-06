@@ -7,9 +7,7 @@ import { createTransaction } from "../repositories/transaction-repository";
 import { createWriting } from "../repositories/writing-repository";
 
 export const purchaseWriting = async (req: Request, res: Response) => {
-  const userId = req.body.user.id;
-
-  const { content, cueId, writingLevel } = req.body;
+  const { content, cueId, writingLevel,id:userId } = req.body;
 
   const taskCost = writingLevel === "PREMIUM" ? 3 : 2;
 
