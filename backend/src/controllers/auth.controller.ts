@@ -7,7 +7,7 @@ import {
   findUserByEmail,
   registerNewUser,
 } from "../repositories/user.repository";
-import { generateReferralCode } from "./auth-utils/generate-referral-code"
+import { generateReferralCode } from "./utils/generate-referral-code"
 
 dotenv.config();
 
