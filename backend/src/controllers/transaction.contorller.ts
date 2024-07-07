@@ -1,9 +1,7 @@
 import { Request, Response } from "express";
 import { createTransaction } from "../repositories/transaction.repository";
-import {
-  updateWalletBalance,
-} from "../repositories/wallet.repositry";
-import { getUserById } from "@/repositories/user.repository";
+
+import { getUserById, updateUserBalance } from "@/repositories/user.repository";
 
 export const chargeWallet = async (req: Request, res: Response) => {
   const { amount, id: userId } = req.body;
@@ -15,7 +13,7 @@ export const chargeWallet = async (req: Request, res: Response) => {
         .status(500)
         .json({ message: "Something happened please try again later" });
 
-    await updateWalletBalance(user.id, amount);
+    await updateUserBalance(user.id, amount);
     await createTransaction(amount, user.id);
 
     res.status(200).json({ message: "Coins added successfully" });

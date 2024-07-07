@@ -27,3 +27,16 @@ export async function isReferralCodeUnique(code: string): Promise<boolean> {
   }
   return true
 }
+
+export const getUserBalanceByUserId = async (id: string) => {
+  return  prisma.user.findUnique({ where: { id } });
+};
+
+export const updateUserBalance = async (id: string, amount: number) => {
+  return  prisma.user.update({
+    where: { id },
+    data: { balance: { increment: amount } },
+  });
+};
+
+
