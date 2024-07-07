@@ -1,0 +1,59 @@
+// https://chatgpt.com/c/bd92954d-d2ae-4f6e-8195-d5d279e91c1d     -> ask for help in indexing
+
+// the purchase process is not handled :|
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String        @id @unique @default(uuid())
+  email        String        @unique
+  password     String
+  firstName    String?
+  lastName     String?
+  role         Role          @default(USER)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  writing      Writing[]
+  referredBy   String?
+  referralCode String        @unique
+  balance      Int           @default(0)
+  transactions Transaction[]
+}
+
+model Transaction {
+  id        String   @id @unique @default(uuid())
+  userId    String
+  amount    Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model Writing {
+  id           String       @id @unique @default(uuid())
+  userId       String
+  content      String
+  cueId        String
+  writingLevel WritingLevel
+  createdAt    DateTime     @default(now())
+  user         User         @relation(fields: [userId], references: [id])
+}
+
+enum WritingLevel {
+  REGULAR
+  PREMIUM
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+// @@unique @@index @@id  block level attribute
