@@ -1,0 +1,4 @@
+'''
+Some people say that it is better to work for a large company than a small one. 
+Do you agree or disagree?
+'''
