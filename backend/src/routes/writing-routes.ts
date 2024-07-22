@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { purchaseWriting } from "../controllers/writing.controller";
+import { getWriting, submitWriting } from "../controllers/writing.controller";
 
-export const purchaseWritingRouter = Router();
+export const writingRouter = Router();
 
-purchaseWritingRouter.post("/", purchaseWriting);
+writingRouter.get("/", getWriting)
+writingRouter.post("/", submitWriting)
 
 

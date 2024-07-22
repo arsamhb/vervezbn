@@ -56,4 +56,9 @@ enum Role {
   ADMIN
 }
 
+enum WritingType {
+  ACADEMIC
+  GENERAL
+}
+
 // @@unique @@index @@id  block level attribute

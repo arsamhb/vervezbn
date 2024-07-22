@@ -259,3 +259,6 @@
 20240706	15:36:49	37666600-0a10-4282-a692-299143048c52	POST	undefined	/auth
 20240706	15:42:01	8ff0136b-cbef-4f53-a08c-b30269a29fd0	POST	undefined	/auth
 20240706	15:42:47	0936d13c-4da0-483c-aa13-31363f320967	POST	undefined	/auth
+20240707	17:40:48	e67cad30-e2c6-4524-8f48-f53d51e924d4	GET	undefined	/writing/getWriting
+20240707	17:54:42	539c3f43-ddf3-450e-addc-6afd315f8ee7	GET	undefined	/writing/getWriting
+20240707	18:08:29	56e42945-0cd2-4674-b141-2ba20ade6ef7	POST	undefined	/writing
