@@ -24,3 +24,6 @@ func main() {
 
 // RUN COMMAND
 // CompileDaemon -command="./notification-service"
+
+// MIGRATION COMMAND
+// go run migrate/migrate.go
