@@ -1,12 +1,11 @@
 package models
 
-import (
-	"time"
-)
+import "time"
 
 type WritingComment struct {
-	ID        string
-	CreatedAt time.Time
+	ID        uint
 	UserId    string
 	CueId     string
+	CreatedAt time.Time
+	UpdatedAt time.Time
 }
