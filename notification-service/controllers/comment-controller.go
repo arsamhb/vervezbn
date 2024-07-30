@@ -5,6 +5,8 @@ import (
 	"notification-service/initializers"
 	"notification-service/models"
 
+	"notification-service/services"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -23,6 +25,7 @@ func SendWritingComment(c *gin.Context) {
 		return
 	}
 
+	services.SendWritingComment()
 	writingCommentData := models.WritingComment{UserId: writingCommentBody.UserId, CueId: writingCommentBody.CueId}
 	result := initializers.DB.Create(&writingCommentData)
 
