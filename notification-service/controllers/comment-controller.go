@@ -23,7 +23,7 @@ func SendWritingComment(c *gin.Context) {
 		return
 	}
 
-	services.SendWritingComment()
+	services.SendWritingComment(writingCommentBody.UserEmail, writingCommentBody.CommentURL)
 	writingCommentData := models.EmailNotification{UserId: writingCommentBody.UserId, NotificationType: models.WritingCommentEmail}
 	result := initializers.DB.Create(&writingCommentData)
 

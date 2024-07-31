@@ -1,33 +1,38 @@
 package services
 
 import (
+	"os"
+	"strconv"
+
 	"gopkg.in/gomail.v2"
 )
 
-func SendWritingComment() {
+func createEmailToSend(receiver string, subject string, body string) *gomail.Message {
 	m := gomail.NewMessage()
 	m.SetHeader("From", "vervedevlab@gmail.com")
-	m.SetHeader("To", "arsam.hb@gmail.com")
-	m.SetHeader("Subject", "WRITING REVIEW COMMENT")
-	m.SetBody("text/html", "PROGRESS")
+	m.SetHeader("To", receiver)
+	m.SetHeader("Subject", subject)
+	m.SetBody("text/html", body)
 
-	d := gomail.NewDialer("smtp.gmail.com", 587, "vervedevlab@gmail.com", "ldjfdgrucvrdkegg")
+	return m
+}
 
-	if err := d.DialAndSend(m); err != nil {
+func submitEmail(dialer *gomail.Message) {
+	envPort := os.Getenv("EMAIL_PORT")
+	port, _ := strconv.Atoi(envPort)
+
+	d := gomail.NewDialer(os.Getenv("EMAIL_HOST"), port, os.Getenv("EMAIL_USERNAME"), os.Getenv("EMAIL_PASSWORD"))
+	if err := d.DialAndSend(dialer); err != nil {
 		panic(err)
 	}
 }
 
-func SendVerificationEmail() {
-	m := gomail.NewMessage()
-	m.SetHeader("From", "vervedevlab@gmail.com")
-	m.SetHeader("To", "arsam.hb@gmail.com")
-	m.SetHeader("Subject", "EMAIL VERIFICATION")
-	m.SetBody("text/html", "PROGRESS")
+func SendWritingComment(receiver string, url string) {
+	m := createEmailToSend(receiver, "Your writing comment is read", url)
+	submitEmail(m)
+}
 
-	d := gomail.NewDialer("smtp.gmail.com", 587, "vervedevlab@gmail.com", "ldjfdgrucvrdkegg")
-
-	if err := d.DialAndSend(m); err != nil {
-		panic(err)
-	}
+func SendVerificationEmail(receiver string, url string) {
+	m := createEmailToSend(receiver, "Verify your account", url)
+	submitEmail(m)
 }

@@ -23,7 +23,7 @@ func SendVerificationEmail(c *gin.Context) {
 		return
 	}
 
-	services.SendVerificationEmail()
+	services.SendVerificationEmail(verificationEmailBody.UserEmail, verificationEmailBody.verificationURL)
 	verificationEmailData := models.EmailNotification{UserId: verificationEmailBody.UserId, NotificationType: models.VerificationEmail}
 	result := initializers.DB.Create(&verificationEmailData)
 
