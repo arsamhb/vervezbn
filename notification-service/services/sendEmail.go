@@ -1,6 +1,7 @@
 package services
 
 import (
+	"notification-service/templates"
 	"os"
 	"strconv"
 
@@ -28,11 +29,13 @@ func submitEmail(dialer *gomail.Message) {
 }
 
 func SendWritingComment(receiver string, url string) {
-	m := createEmailToSend(receiver, "Your writing comment is read", url)
+	body, _ := templates.CreateHtmlBody(url, "Your writing review is ready", "In order to see your writing review click the link below")
+	m := createEmailToSend(receiver, "Your writing comment is read", body)
 	submitEmail(m)
 }
 
 func SendVerificationEmail(receiver string, url string) {
-	m := createEmailToSend(receiver, "Verify your account", url)
+	body, _ := templates.CreateHtmlBody(url, "Verify your account to access more", "In order to verify your account click the link below")
+	m := createEmailToSend(receiver, "Verify your account", body)
 	submitEmail(m)
 }
