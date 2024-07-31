@@ -11,5 +11,5 @@ func init() {
 }
 
 func main() {
-	initializers.DB.AutoMigrate(&models.WritingComment{})
+	initializers.DB.AutoMigrate(&models.EmailNotification{})
 }

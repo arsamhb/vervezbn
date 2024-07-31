@@ -14,6 +14,7 @@ func init() {
 
 func main() {
 	r := gin.Default()
+	r.POST("/verify-email", controllers.SendVerificationEmail)
 	r.POST("/writing-comment", controllers.SendWritingComment)
 	r.Run()
 }

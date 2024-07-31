@@ -15,8 +15,6 @@ func SendWritingComment(c *gin.Context) {
 		UserId     string
 		UserEmail  string
 		CommentURL string
-		CueId      string
-		Comment    string
 	}
 
 	err := c.BindJSON(&writingCommentBody)
@@ -26,7 +24,7 @@ func SendWritingComment(c *gin.Context) {
 	}
 
 	services.SendWritingComment()
-	writingCommentData := models.WritingComment{UserId: writingCommentBody.UserId, CueId: writingCommentBody.CueId}
+	writingCommentData := models.EmailNotification{UserId: writingCommentBody.UserId, NotificationType: models.WritingCommentEmail}
 	result := initializers.DB.Create(&writingCommentData)
 
 	if result.Error != nil {
@@ -35,6 +33,6 @@ func SendWritingComment(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"message": " writingCommentBody",
+		"message": "Email sent to the user",
 	})
 }
