@@ -286,3 +286,4 @@
 20240804	18:20:00	bc6bc84b-1663-421c-b304-21150c35c2fb	GET	undefined	/user/info/
 20240804	18:20:45	441283c5-5a55-42e9-99db-4d40539381c1	GET	undefined	/user/info/
 20240804	18:20:55	fd4aa0e5-97ab-454e-9993-5182c6f0f5f4	GET	undefined	/user/info/123123
+20240804	18:35:07	22fb4675-bb5e-4b8f-a4c8-1429b29bb195	POST	undefined	/charge-wallet
