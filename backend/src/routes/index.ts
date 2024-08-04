@@ -6,11 +6,13 @@ import { verifyJWT } from "@/middleware/verifyJWT";
 import { writingRouter } from "@/routes/writing-routes";
 import { chargeWalletRouter } from "@/routes/transaction-routes";
 import { Express } from "express";
+import { userRouter } from "@/routes/user-routes"
 
 export const router = (app: Express) => {
     app.use("/", rootRouter);
     app.use("/auth", authRouter);
     app.use(verifyJWT);
+    app.use("/user", userRouter);
     app.use("/writing", writingRouter);
     app.use("/charge-wallet", chargeWalletRouter);
     app.get("/*", (req, res) => {
