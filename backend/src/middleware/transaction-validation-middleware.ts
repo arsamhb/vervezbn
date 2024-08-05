@@ -18,7 +18,12 @@ export const validateTransactionChargeRequest = (
   const chargeWalletTransactionSchema = z.object({
     amount: z
       .number()
-      .gt(parseInt(process.env.SINGLE_TOKEN_VALUE_IN_RIAL as string)),
+      .gt(parseInt(process.env.SINGLE_TOKEN_VALUE_IN_RIAL as string, 10)).refine(
+        (amount) => amount % parseInt(process.env.SINGLE_TOKEN_VALUE_IN_RIAL as string, 10) === 0,
+        {
+          message: `Amount must be a multiple of ${process.env.SINGLE_TOKEN_VALUE_IN_RIAL}`,
+        }
+      ),
     id: z.string(),
   });
 
