@@ -10,7 +10,7 @@ export const chargeWallet = async (req: Request, res: Response) => {
 
   const coinsCount = convertRialToCoin(amount)
 
-  if (coinsCount === -1) {
+  if (coinsCount === -1 || !coinsCount) {
     return res
       .status(500)
       .json({ message: "We did not find env file. So please try again later." });
@@ -22,8 +22,6 @@ export const chargeWallet = async (req: Request, res: Response) => {
       return res
         .status(500)
         .json({ message: "Something happened please try again later" });
-
-    console.log("typeof amount", typeof amount);
 
     await updateUserBalance(user.id, coinsCount);
     await createAppTransaction(coinsCount, user.id, AppTransactionDescription.WALLET_CHARGE)
