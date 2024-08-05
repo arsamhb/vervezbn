@@ -287,3 +287,17 @@
 20240804	18:20:45	441283c5-5a55-42e9-99db-4d40539381c1	GET	undefined	/user/info/
 20240804	18:20:55	fd4aa0e5-97ab-454e-9993-5182c6f0f5f4	GET	undefined	/user/info/123123
 20240804	18:35:07	22fb4675-bb5e-4b8f-a4c8-1429b29bb195	POST	undefined	/charge-wallet
+20240805	17:08:20	c30b29ae-5956-43b5-9d15-f524a492e841	POST	undefined	/auth/register
+20240805	17:41:53	0e9d871d-ca79-4b35-a308-368f64df539e	POST	undefined	/transaction/charge-wallet
+20240805	17:42:59	eed6369d-9cab-4b33-8d9e-a8c3b185cfa0	POST	undefined	/auth/login
+20240805	17:43:55	613854bc-bcc2-498c-941e-570afd73f624	POST	undefined	/transaction/charge-wallet
+20240805	17:44:15	d76f4bd7-56b0-46e8-b941-e60edc2ce51b	POST	undefined	/transaction/charge-wallet
+20240805	17:44:48	32a4ce2b-f2b6-4c21-a9c2-67301ce5749d	POST	undefined	/transaction/charge-wallet
+20240805	17:45:28	a47515ca-1f0c-4c39-bd73-69f8833bd2fb	POST	undefined	/transaction/charge-wallet
+20240805	17:46:25	c57bcfb2-986d-425a-941d-3d4155e69243	POST	undefined	/transaction/charge-wallet
+20240805	17:49:37	83a21032-7837-4675-a946-c5661213cc69	POST	undefined	/transaction/charge-wallet
+20240805	17:55:24	273fc34f-830d-410d-891a-3e6432cebff4	POST	undefined	/transaction/charge-wallet
+20240805	17:56:10	491e3140-b373-48dd-9233-6cbb69e8951d	POST	undefined	/transaction/charge-wallet
+20240805	17:57:30	1b53a4fe-87cc-4297-8df0-81c12d0870f3	POST	undefined	/transaction/charge-wallet
+20240805	17:57:42	7a9c2213-c410-41ab-a493-7b4186c14ad6	POST	undefined	/transaction/charge-wallet
+20240805	18:01:50	e827e156-2ed7-4b7d-994e-3f8ffff66e7a	POST	undefined	/transaction/charge-wallet

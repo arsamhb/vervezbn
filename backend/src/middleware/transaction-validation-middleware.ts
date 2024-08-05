@@ -9,7 +9,7 @@ export const validateTransactionChargeRequest = (
   res: Response,
   next: NextFunction
 ) => {
-  if (!process.env.SINGLE_TOKEN_VALUE_IN_TOMAN) {
+  if (!process.env.SINGLE_TOKEN_VALUE_IN_RIAL) {
     return res.status(500).json({
       message: "something bad happened to us visit us a few moment later",
     });
@@ -18,7 +18,7 @@ export const validateTransactionChargeRequest = (
   const chargeWalletTransactionSchema = z.object({
     amount: z
       .number()
-      .gt(parseInt(process.env.SINGLE_TOKEN_VALUE_IN_TOMAN as string)),
+      .gt(parseInt(process.env.SINGLE_TOKEN_VALUE_IN_RIAL as string)),
     id: z.string(),
   });
 

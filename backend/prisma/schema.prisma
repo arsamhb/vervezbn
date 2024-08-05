@@ -12,23 +12,23 @@ datasource db {
 }
 
 model User {
-  id                  String                @id @unique @default(uuid())
-  email               String                @unique
+  id                  String            @id @unique @default(uuid())
+  email               String            @unique
   password            String
   firstName           String?
   lastName            String?
-  role                Role                  @default(USER)
-  createdAt           DateTime              @default(now())
-  updatedAt           DateTime              @updatedAt
+  role                Role              @default(USER)
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
   writing             Writing[]
   referredBy          String?
-  referralCode        String                @unique
-  balance             Int                   @default(0)
-  transactions        Transaction[]
-  InternalTransaction InternalTransaction[]
+  referralCode        String            @unique
+  balance             Int               @default(0)
+  transactions        BankTransaction[]
+  InternalTransaction AppTransaction[]
 }
 
-model Transaction {
+model BankTransaction {
   id        String   @id @unique @default(uuid())
   userId    String
   amount    Int
@@ -37,14 +37,14 @@ model Transaction {
   user      User     @relation(fields: [userId], references: [id])
 }
 
-model InternalTransaction {
-  id          String                         @id @unique @default(uuid())
+model AppTransaction {
+  id          String                    @id @unique @default(uuid())
   userId      String
   amount      Int
-  createdAt   DateTime                       @default(now())
-  updatedAt   DateTime                       @updatedAt
-  description InternalTransactionDescription
-  user        User                           @relation(fields: [userId], references: [id])
+  createdAt   DateTime                  @default(now())
+  updatedAt   DateTime                  @updatedAt
+  description AppTransactionDescription
+  user        User                      @relation(fields: [userId], references: [id])
 }
 
 model Writing {
@@ -72,7 +72,7 @@ enum WritingType {
   GENERAL
 }
 
-enum InternalTransactionDescription {
+enum AppTransactionDescription {
   SINGUP_GIFT
   REFER_GIFT
   BONUS

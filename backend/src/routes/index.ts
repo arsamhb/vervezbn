@@ -14,7 +14,7 @@ export const router = (app: Express) => {
     app.use(verifyJWT);
     app.use("/user", userRouter);
     app.use("/writing", writingRouter);
-    app.use("/charge-wallet", chargeWalletRouter);
+    app.use("/transaction", chargeWalletRouter);
     app.get("/*", (req, res) => {
         res.status(404).json({ message: "We could not find the page you want." });
     });

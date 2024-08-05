@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import {
   updateUserBalance,
 } from "../repositories/user.repository";
-import { createTransaction } from "../repositories/transaction.repository";
+import { createAppTransaction } from "../repositories/transaction.repository";
 import dotenv from "dotenv";
 import { getUserBalanceByUserId } from "@/repositories/user.repository";
 import { getWritingFromAbdoliService, submitWritingToAbdoliService } from "@/MOCK/writing-mock-function"
@@ -12,7 +12,7 @@ dotenv.config();
 
 export const purchaseWriting = async (user: User, cost: number) => {
   await updateUserBalance(user.id, -cost);
-  await createTransaction(-cost, user.id);
+  await createAppTransaction(-cost, user.id, "WRITING_COMMENT");
 };
 
 export const getWriting = async (req: Request, res: Response) => {
