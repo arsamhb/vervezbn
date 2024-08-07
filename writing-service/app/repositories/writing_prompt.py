@@ -1,6 +1,9 @@
+from typing import List
 from app.enums.writing_task import WritingTask
 from app.db.session import Session
-from app.models.writing_prompt import WritingPrompt
+from app.db.models import WritingPrompt
+from sqlalchemy import select
+
 
 def create_writing_prompt(content: str, task: WritingTask):
     with Session() as session:
@@ -9,3 +12,11 @@ def create_writing_prompt(content: str, task: WritingTask):
         session.commit()
         session.refresh(new_prompt)
         return new_prompt
+
+
+def match_writing_prompt(previous_matched: List[int]):
+    with Session() as session:
+        matched = session.query(WritingPrompt).filter(
+            WritingPrompt.id.notin_(previous_matched)).first()
+        print('matched', matched)
+        return matched

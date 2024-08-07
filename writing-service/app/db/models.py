@@ -18,10 +18,10 @@ class Writing(BaseModel):
     __tablename__ = 'writing'
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    status: Mapped[WritingStatus] = mapped_column(Enum(WritingStatus))
+    status: Mapped[WritingStatus] = mapped_column(Enum(WritingStatus), default=WritingStatus.IN_PROGRESS)
     user_id: Mapped[str] = mapped_column(String(30))
     writing_prompt_id: Mapped[int] = mapped_column(ForeignKey('writing_prompt.id'))
-    writing_prompt: Mapped[List['WritingPrompt']] = relationship(back_populates='writings')
+    writing_prompt: Mapped['WritingPrompt'] = relationship(back_populates='writings')
     examiners: Mapped[List['Examiner']] = relationship(back_populates='writing')
 
 class Examiner(BaseModel):
