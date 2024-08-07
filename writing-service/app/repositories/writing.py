@@ -1,5 +1,4 @@
 from app.db.session import Session
-from sqlalchemy import select
 from sqlalchemy.orm import subqueryload
 from app.db.models import Writing
 from app.enums.writing_status import WritingStatus
