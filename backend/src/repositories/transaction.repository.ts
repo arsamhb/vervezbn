@@ -8,3 +8,11 @@ export const createBankTransaction = async (amount: number, userId: string) => {
 export const createAppTransaction = async (amount: number, userId: string, description: AppTransactionDescription) => {
   return prisma.appTransaction.create({ data: { amount, userId, description } })
 }
+
+export const findUserBankTransactions = async (userId: string, skip: number, take: number) => {
+  return prisma.bankTransaction.findMany({
+    where: {
+      userId
+    }, skip, take
+  })
+}

@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-export const validateTransactionChargeRequest = (
+export const validateTransactionCharge = (
   req: Request,
   res: Response,
   next: NextFunction

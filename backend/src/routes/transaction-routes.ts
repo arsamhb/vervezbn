@@ -1,6 +1,9 @@
 import { Router } from "express";
-import { chargeWallet } from "../controllers/transaction.contorller";
-import { validateTransactionChargeRequest } from "@/middleware/transaction-validation-middleware"
-export const chargeWalletRouter = Router();
+import { chargeWallet, getUserBankTransactions } from "../controllers/transaction.contorller";
+import { validateTransactionCharge } from "@/middleware/transaction-validation-middleware"
 
-chargeWalletRouter.post("/charge-wallet", validateTransactionChargeRequest, chargeWallet);
+
+export const transactionRouter = Router();
+
+transactionRouter.post("/charge-wallet", validateTransactionCharge, chargeWallet);
+transactionRouter.get("/:userId/bankTransactions", getUserBankTransactions)
