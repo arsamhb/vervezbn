@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from app.db.schemas import WritingCreate, WritingPrompt
-from app.services.writing import create
+from app.services.writing import create, submit
 from app.schemas.writing.writing_submit import WritingSubmit
 from app.schemas.writing.writing_create_response import WritingCreateResponse
 
@@ -18,4 +18,4 @@ def create_writing(writing: WritingCreate):
 
 @router.post('/submit')
 def submit_writing(writing_submit: WritingSubmit):
-    pass
+    submit(writing_submit)

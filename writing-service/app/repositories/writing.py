@@ -27,3 +27,10 @@ def create_one(user_id: str, writing_prompt_id: int):
         session.commit()
         session.refresh(new_writing)
         return new_writing
+
+
+def update_submission(writing_id: int, writing: str, status: WritingStatus = WritingStatus.IN_PROGRESS):
+    with Session() as session:
+        session.query(Writing).filter(Writing.id == writing_id).update(
+            {'content': writing, 'status': status})
+        session.commit()
