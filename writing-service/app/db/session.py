@@ -1,8 +1,8 @@
 from .base import Session
 
-def get_connection():
-    connection = Session()
+def get_session():
+    session = Session()
     try:
-        yield connection 
+        yield session 
     finally: 
-        connection.close()
+        session.close()
