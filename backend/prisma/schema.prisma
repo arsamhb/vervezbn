@@ -17,13 +17,15 @@ model User {
   password            String
   firstName           String?
   lastName            String?
-  role                Role              @default(USER)
+  phoneNumber         String?
+  birthDate           DateTime?
   createdAt           DateTime          @default(now())
   updatedAt           DateTime          @updatedAt
-  writing             Writing[]
   referredBy          String?
   referralCode        String            @unique
   balance             Int               @default(0)
+  role                Role              @default(USER)
+  writing             Writing[]
   transactions        BankTransaction[]
   InternalTransaction AppTransaction[]
 }

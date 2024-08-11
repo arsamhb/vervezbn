@@ -6,15 +6,30 @@ dotenv.config();
 
 export const validateGetUserInfo = (req: Request, res: Response, next: NextFunction) => {
     const userId = req.params.id;
-    
+
     if (!userId) {
-        return res.status(400).json({ message: "user id should be provided" })
+        return res.status(400).json({ error: "user id should be provided" })
     }
 
-    const userInfoRequestSchema = z.string()
+    next()
+}
+
+export const validatePostUserInfo = (req: Request, res: Response, next: NextFunction) => {
+    const userId = req.params.id;
+
+    if (!userId) {
+        return res.status(400).json({ error: "user id should be provided" })
+    }
+
+    const postUserInfoSchema = z.object({
+        firstName: z.string().min(3).optional(),
+        lastName: z.string().min(3).optional(),
+        phoneNumber: z.string().length(12).regex(/^\d+$/).optional(),
+        birthDate: z.string().datetime().optional(),
+    })
 
     try {
-        userInfoRequestSchema.parse(req.body)
+        postUserInfoSchema.parse(req.body)
         next()
     } catch (error) {
         if (error instanceof ZodError) {

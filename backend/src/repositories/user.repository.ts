@@ -1,3 +1,4 @@
+import { User } from "@prisma/client";
 import prisma from "../database/prisma-client";
 
 export async function findUserByEmail(userEmail: string) {
@@ -26,6 +27,8 @@ export async function getUserInfoById(userId: string) {
       email: true,
       firstName: true,
       lastName: true,
+      phoneNumber: true,
+      birthDate: true,
       createdAt: true,
       balance: true,
       referralCode: true,
@@ -57,4 +60,28 @@ export const updateUserBalance = async (id: string, amount: number) => {
   });
 };
 
-
+export const updateUserInfo = async (userId: string, userInfo: Pick<User, "firstName" | "lastName" | "birthDate" | "phoneNumber">) => {
+  return prisma.user.update({
+    where: {
+      id: userId
+    },
+    data: {
+      birthDate: userInfo.birthDate,
+      firstName: userInfo.firstName,
+      lastName: userInfo.lastName,
+      phoneNumber: userInfo.phoneNumber
+    }, 
+    select: {
+      id: true,
+      email: true,
+      firstName: true,
+      lastName: true,
+      phoneNumber: true,
+      birthDate: true,
+      createdAt: true,
+      balance: true,
+      referralCode: true,
+      role: true,
+    }
+  })
+}
