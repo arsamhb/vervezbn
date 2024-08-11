@@ -54,6 +54,7 @@ model Writing {
   userId       String
   content      String
   cueId        String
+  writingType  String
   writingLevel WritingLevel
   createdAt    DateTime     @default(now())
   user         User         @relation(fields: [userId], references: [id])

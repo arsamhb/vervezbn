@@ -1,17 +1,17 @@
-import { WritingLevel } from "@prisma/client";
 import prisma from "../database/prisma-client";
+import { WritingPrompt } from "../services/writing-service";
 
-export interface IWritingData {
-  userId: string;
-  content: string;
-  cueId: string;
-  writingLevel: WritingLevel;
-}
-
-export const createWriting = async (writingData: IWritingData) => {
-  return  prisma.writing.create({ data: writingData });
-};
-
-export const deliverWritingToUser = async (id: string) => {
-  return  prisma.writing.findUnique({ where: { id: id } });
+export const assignWritingToUser = async (
+  userId: string,
+  writing: WritingPrompt
+) => {
+  return prisma.writing.create({
+    data: {
+      userId,
+      content: writing.writing_prompt.content,
+      cueId: writing.writing_id.toString(),
+      writingType: writing.writing_prompt.task,
+      writingLevel: "REGULAR",
+    },
+  });
 };
