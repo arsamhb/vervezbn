@@ -1,10 +1,12 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from app.models.base import Base
+from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
 DATABASE_URL = 'postgresql://postgres:secret@localhost:5431/vervez'
-engine = create_engine(DATABASE_URL)
-Session = sessionmaker(autoflush=False, bind=engine)
+engine = create_engine(DATABASE_URL, echo=True)
+Session = sessionmaker(autoflush=False, autocommit=False, bind=engine)
+
+class BaseModel(DeclarativeBase):
+    pass
 
 def init_db():
-    Base.metadata.create_all(bind=engine)
+    BaseModel.metadata.create_all(bind=engine)

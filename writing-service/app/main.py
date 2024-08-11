@@ -1,16 +1,11 @@
-from fastapi import FastAPI, Depends
-from typing import Annotated
-from app.db.session import get_connection
-from app.models.writing_prompt import WritingPrompt
-from app.enums.writing_task import WritingTask
-from . import dependencies
+from fastapi import FastAPI
+from app.db.base import init_db
+from app.routers.writing_prompts import router as writing_prompts_router
+from app.routers.writing import router as writing_router
+from app.routers.examiner import router as examiner_router
 
+init_db()
 app = FastAPI()
-
-@app.get('/')
-def create_writing_prompt(db: Annotated[get_connection, Depends()]):
-    prompt = WritingPrompt(content='some content', task=WritingTask.ESSAY)
-    db.add(prompt)
-    db.commit()
-    db.refresh(prompt)
-    return prompt
+app.include_router(writing_prompts_router)
+app.include_router(writing_router)
+app.include_router(examiner_router)
