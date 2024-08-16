@@ -8,10 +8,11 @@ export const assignWritingToUser = async (
   return prisma.writing.create({
     data: {
       userId,
-      content: writing.writing_prompt.content,
+      cueCard: writing.writing_prompt.content,
       cueId: writing.writing_id.toString(),
-      writingType: writing.writing_prompt.task,
-      writingLevel: "REGULAR",
+      commentLevel: "FREE",
+      examType: "GENERAL",
+      writingType: writing.writing_prompt.task === "essay" ? "ESSAY" : "LETTER",
     },
   });
 };

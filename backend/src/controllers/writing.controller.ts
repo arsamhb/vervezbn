@@ -29,7 +29,8 @@ export const getWriting = async (req: Request, res: Response) => {
     await assignWritingToUser(userId, writing);
     const response = {
       cueCard: writing.writing_prompt.content,
-      taskType: writing.writing_prompt.content,
+      taskType: writing.writing_prompt.task,
+      cueId: writing.writing_id,
     };
     res.status(200).json(response);
   } catch (error) {

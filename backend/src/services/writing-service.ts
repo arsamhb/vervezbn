@@ -12,7 +12,7 @@ export interface WritingPrompt {
 export const getWritingFromWritingService = async (
   userId: string,
   taskType: "essay" | "letter"
-) => {
+):Promise<WritingPrompt> => {
   const body = {
     user_id: userId,
     task_type: taskType,
