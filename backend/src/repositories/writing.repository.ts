@@ -16,3 +16,21 @@ export const assignWritingToUser = async (
     },
   });
 };
+
+
+export const findUsersWriting = async (userId: string, skip: number, take: number) => {
+  return prisma.writing.findMany({
+    where: {
+      userId
+    },
+    select: {
+      writingType: true,
+      commentLevel: true,
+      createdAt: true,
+      examType: true,
+      cueCard: true,
+      id: true,
+    },
+    skip, take
+  })
+}

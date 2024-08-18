@@ -379,3 +379,6 @@
 20240811	15:05:53	52b44cd3-f20c-4968-9612-72f1269beb7c	POST	undefined	/user/info/cb794d6d-d456-4911-9fc9-d03515e2a52a
 20240811	15:06:05	2a96d135-556f-49d2-bda2-98bcef7406a3	POST	undefined	/user/info/cb794d6d-d456-4911-9fc9-d03515e2a52a
 20240811	15:06:21	cf4fb81e-f35c-400a-aab2-6f6892f7c7c1	POST	undefined	/user/info/cb794d6d-d456-4911-9fc9-d03515e2a52a
+20240818	15:53:27	2dcbf2ce-506f-4bc7-ae92-de1bfb3495a7	GET	undefined	/writing/cb794d6d-d456-4911-9fc9-d03515e2a52a/writings
+20240818	15:54:06	59d131f7-6e0b-4ea7-9bc7-31b2395ebe9e	POST	undefined	/auth/login
+20240818	15:54:12	c0931cea-b03b-4360-99ea-84cfde6b1c56	GET	undefined	/writing/cb794d6d-d456-4911-9fc9-d03515e2a52a/writings
