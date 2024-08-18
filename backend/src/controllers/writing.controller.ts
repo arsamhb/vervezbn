@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getUserById, updateUserBalance } from "../repositories/user.repository";
+import { updateUserBalance } from "../repositories/user.repository";
 import { createAppTransaction } from "../repositories/transaction.repository";
 import dotenv from "dotenv";
 import { getUserBalanceByUserId } from "@/repositories/user.repository";
@@ -8,8 +8,7 @@ import {
   getWritingFromWritingService,
   postUserWritingToWritingService,
 } from "@/services/writing-service";
-import { assignWritingToUser, findUsersWriting } from "@/repositories/writing.repository";
-import { DEFAULT_SKIP, DEFAULT_TAKE } from "@/constants/pagination";
+import { assignWritingToUser } from "@/repositories/writing.repository";
 
 dotenv.config();
 
@@ -65,22 +64,3 @@ export const submitWriting = async (req: Request, res: Response) => {
   }
 };
 
-export const getUsersWritings = async (req: Request, res: Response) => {
-  const userId = req.params.id;
-
-  const skip = parseInt(req.query.skip as string, 10) || DEFAULT_SKIP
-  const take = parseInt(req.query.take as string, 10) || DEFAULT_TAKE
-
-  const user = await getUserById(userId);
-  if (!user)
-    return res
-      .status(404)
-      .json({ message: "We did not found the user" });
-
-  try {
-    const writings = await findUsersWriting(userId, skip, take)
-    return res.status(200).json({ data: writings })
-  } catch (error) {
-    return res.status(500).json({ error: "internal server error" })
-  }
-}

@@ -34,3 +34,11 @@ export const findUsersWriting = async (userId: string, skip: number, take: numbe
     skip, take
   })
 }
+
+export const findOneUsersWriting = async (writingId: string) => {
+  return prisma.writing.findFirst({
+    where: {
+      id: writingId
+    }
+  })
+}
