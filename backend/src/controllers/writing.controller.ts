@@ -48,18 +48,18 @@ export const submitWriting = async (req: Request, res: Response) => {
     return res.status(500).json({ error: "Internal server error" });
 
   if (user?.balance < parseInt(process.env.WRITING_PREMIUM_TASK_PRICE)) {
-    return res.status(500).json({ error: "Internal server error" });
+    return res.status(400).json({ error: "You balance is not enough for purchasing this item." });
   } else {
     purchaseWriting(user, parseInt(process.env.WRITING_PREMIUM_TASK_PRICE));
   }
 
   const response = await postUserWritingToWritingService(writing, writingId);
 
-  if (response === "success") {
+  if (response.message === "success") {
     return res.status(200).json(response);
   }
 
-  if (response === "error") {
+  if (response.message === "error") {
     return res.status(500).json({ error: "Internal server error" });
   }
 };

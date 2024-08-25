@@ -1,4 +1,7 @@
 import axios from "axios";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export interface WritingPrompt {
   writing_id: number;
@@ -12,14 +15,14 @@ export interface WritingPrompt {
 export const getWritingFromWritingService = async (
   userId: string,
   taskType: "essay" | "letter"
-):Promise<WritingPrompt> => {
+): Promise<WritingPrompt> => {
   const body = {
     user_id: userId,
     task_type: taskType,
   };
 
   const response = await axios
-    .post("http://writing-service/writing", body, {
+    .post(`${process.env.ACCESS_TOKEN_SECRET}/writing`, body, {
       headers: {
         "Content-Type": "application/json",
         "User-Agent": "Node.js",
@@ -39,13 +42,9 @@ export const postUserWritingToWritingService = async (
   writing: string,
   writingId: string
 ) => {
-  const body = {
-    writing_id: parseInt(writingId, 10),
-    writing,
-  };
-
+  const body = { writing, writingId }
   const response = await axios
-    .post("http://writing-service/writing", body, {
+    .post(`${process.env.ACCESS_TOKEN_SECRET}/writing/submit`, body, {
       headers: {
         "Content-Type": "application/json",
         "User-Agent": "Node.js",
