@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getWriting, submitWriting } from "../controllers/writing.controller";
+import {  getWriting, submitWriting } from "../controllers/writing.controller";
 import {
   validateGetWriting,
   validateSubmitWriting,

@@ -49,8 +49,9 @@ export const submitWriting = async (req: Request, res: Response) => {
   if (!WRITING_PREMIUM_TASK_PRICE)
     return res.status(500).json({ error: ERRORS.ENV_VAR_NOT_FOUND });
 
+
   if (user.balance < parseInt(WRITING_PREMIUM_TASK_PRICE, 10)) {
-    return res.status(500).json({ error: ERRORS.NOT_ENOUGH_COINS });
+    return res.status(400).json({ error: ERRORS.NOT_ENOUGH_COINS });
   } else {
     purchaseWriting(user, parseInt(WRITING_PREMIUM_TASK_PRICE, 10));
   }
@@ -64,3 +65,4 @@ export const submitWriting = async (req: Request, res: Response) => {
       .json({ error: `${ERRORS.INTERNAL_ERROR} Error: ${error}` });
   }
 };
+

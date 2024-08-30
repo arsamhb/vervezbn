@@ -11,6 +11,7 @@ import { router } from "@/routes";
 const app = express();
 const { PORT } = ENV;
 
+
 app.use(logger);
 
 app.use(cors(corsOptions));
@@ -25,3 +26,4 @@ router(app);
 app.use(errorHandler);
 
 app.listen(PORT, () => console.log(`server is running on port: ${PORT}`));
+
