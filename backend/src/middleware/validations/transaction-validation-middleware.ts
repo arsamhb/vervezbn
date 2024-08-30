@@ -1,6 +1,8 @@
 import { z, ZodError } from "zod";
 import { Request, Response, NextFunction } from "express";
 import dotenv from "dotenv";
+import { ENV } from "@/config/env.config";
+import { ERRORS } from "@/constants/response.messages";
 
 dotenv.config();
 
@@ -9,19 +11,22 @@ export const validateTransactionCharge = (
   res: Response,
   next: NextFunction
 ) => {
-  if (!process.env.SINGLE_TOKEN_VALUE_IN_RIAL) {
+  const { SINGLE_TOKEN_VALUE_IN_RIAL } = ENV;
+  if (!SINGLE_TOKEN_VALUE_IN_RIAL) {
     return res.status(500).json({
-      message: "something bad happened to us visit us a few moment later",
+      message: ERRORS.ENV_VAR_NOT_FOUND,
     });
   }
 
   const chargeWalletTransactionSchema = z.object({
     amount: z
       .number()
-      .gt(parseInt(process.env.SINGLE_TOKEN_VALUE_IN_RIAL as string, 10)).refine(
-        (amount) => amount % parseInt(process.env.SINGLE_TOKEN_VALUE_IN_RIAL as string, 10) === 0,
+      .gt(parseInt(SINGLE_TOKEN_VALUE_IN_RIAL as string, 10))
+      .refine(
+        (amount) =>
+          amount % parseInt(SINGLE_TOKEN_VALUE_IN_RIAL as string, 10) === 0,
         {
-          message: `Amount must be a multiple of ${process.env.SINGLE_TOKEN_VALUE_IN_RIAL}`,
+          message: `Amount must be a multiple of ${SINGLE_TOKEN_VALUE_IN_RIAL}`,
         }
       ),
     id: z.string(),
