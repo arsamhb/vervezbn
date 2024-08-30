@@ -3,7 +3,7 @@ import { getWriting, submitWriting } from "../controllers/writing.controller";
 import {
   validateGetWriting,
   validateSubmitWriting,
-} from "@/middleware/writing-validation-middleware";
+} from "@/middleware/validations/writing-validation-middleware";
 
 export const writingRouter = Router();
 

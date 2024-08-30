@@ -1,18 +1,29 @@
-import { AppTransactionDescription } from "@prisma/client";
+import { TransactionDescription, TransactionType } from "@prisma/client";
 import prisma from "../database/prisma-client";
 
-export const createBankTransaction = async (amount: number, userId: string) => {
-  return prisma.bankTransaction.create({ data: { amount, userId } })
+export const createTransaction = async (
+  amount: number,
+  userId: string,
+  description: TransactionDescription,
+  transactionType: TransactionType
+) => {
+  return prisma.transaction.create({
+    data: { amount, userId, description, transactionType },
+  });
 };
 
-export const createAppTransaction = async (amount: number, userId: string, description: AppTransactionDescription) => {
-  return prisma.appTransaction.create({ data: { amount, userId, description } })
-}
-
-export const findUserBankTransactions = async (userId: string, skip: number, take: number) => {
-  return prisma.bankTransaction.findMany({
+export const findUserTransactions = async (
+  userId: string,
+  transactionType: TransactionType,
+  skip: number,
+  take: number
+) => {
+  return prisma.transaction.findMany({
     where: {
-      userId
-    }, skip, take
-  })
-}
+      userId,
+      transactionType,
+    },
+    skip,
+    take,
+  });
+};

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { updateUserBalance } from "../repositories/user.repository";
-import { createAppTransaction } from "../repositories/transaction.repository";
+import { createTransaction } from "../repositories/transaction.repository";
 import dotenv from "dotenv";
 import { getUserBalanceByUserId } from "@/repositories/user.repository";
 import { User } from "@prisma/client";
@@ -14,7 +14,7 @@ dotenv.config();
 
 export const purchaseWriting = async (user: User, cost: number) => {
   await updateUserBalance(user.id, -cost);
-  await createAppTransaction(-cost, user.id, "WRITING_COMMENT");
+  await createTransaction(-cost, user.id, "WRITING_COMMENT", "LOCAL");
 };
 
 export const getWriting = async (req: Request, res: Response) => {
