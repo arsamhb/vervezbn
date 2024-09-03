@@ -16,21 +16,23 @@ const landingInfo = [
       "Aali is not biased to any content or concept so it will give a fair score, It does not need to sleep. And it has been read a count of IELTS writings that no other human being ever read.",
   },
 ];
+
 export default function Home() {
   return (
-    <div className="standard-margin flex flex-col justify-between gap-20">
+    <div className="flex flex-col justify-between gap-20">
       <Hero />
-      {landingInfo.map((info, index) => (
+      <h2 className="text-h1 mx-auto my-16">Elevate your writing skills with out AI-driven agent</h2>
+      <Features />
+      {/* {landingInfo.map((info, index) => (
         <Section
           detail={info.detail}
           title={info.title}
           key={index}
           rtl={index % 2 === 0}
         />
-      ))}
-      <HowItWorks />
-      <Features />
-      <FAQ />
+      ))} */}
+      {/* <HowItWorks /> */}
+      {/* <FAQ /> */}
     </div>
   );
 }

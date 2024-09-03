@@ -1,28 +1,27 @@
 import React from "react";
 import Image from "next/image";
-import aaliImage from "@/assets/img/aali.png";
 import Link from "next/link";
+import HeroBGPath from "@/assets/img/HeroBGSVG.svg"
+import HeroCurvePath from "@/assets/img/HeroCurveSVG.svg"
 
 type Props = {};
 
 const Hero = (props: Props) => {
   return (
-    <div className="flex flex-col justify-between w-full h-[90vh] py-12">
-      <span className="flex flex-row justify-between items-center w-full">
-        <h2>
+    <div className="flex flex-col justify-between w-full h-[100vh] standard-padding relative">
+      <Image src={HeroBGPath} className="w-[100vw] h-[100vh] absolute top-0 right-0 z-[-1]" alt="background-image" />
+      <Image src={HeroCurvePath} className="w-[100vw] h-[100vh] absolute top-0 right-0 z-[-1]" alt="background-image" />
+      <span className="flex flex-row justify-between items-center w-full mt-16 h-2/3">
+        <h1 className="text-h1">
           A Fast, Knowledgeable, <br />
           <em>With No Error</em>, AI agent <br />
           to help take the score you want in <br />
           <em>IELTS</em>
-        </h2>
-        <Image src={aaliImage} height={600} alt="Picture of the Aali" />
+        </h1>
       </span>
-      <span className="flex flex-row gap-4 place-items-start">
-        <button className="border text-blue-dark border-blue-dark px-2 py-1 bg-blue-light">
+      <span className="flex flex-row gap-4 place-items-start mb-16 h-1/6">
+        <button className="button bg-primary text-light ">
           <Link href="/writing">Take a writing test</Link>
-        </button>
-        <button className="border text-blue-light border-blue-light px-2 py-1 bg-blue-dark">
-          <Link href="/#learn-more">Learn more</Link>
         </button>
       </span>
     </div>

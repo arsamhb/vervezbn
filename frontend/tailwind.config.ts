@@ -10,14 +10,64 @@ const config: Config = {
   theme: {
     extend: {
       spacing: {},
-      padding: {
-        standard: "1rem 2rem 5rem 15rem",
+      fontSize: {
+        h1: [
+          "2.25rem", // 36px
+          {
+            lineHeight: "2.5rem", // 40px
+            fontWeight: "700",
+          },
+        ],
+        h2: [
+          "1.875rem", // 30px
+          {
+            lineHeight: "2.25rem", // 36px
+            fontWeight: "700",
+          },
+        ],
+        h3: [
+          "1.5rem", // 24px
+          {
+            lineHeight: "2rem", // 32px
+            fontWeight: "600",
+          },
+        ],
+        h4: [
+          "1.25rem", // 20px
+          {
+            lineHeight: "1.75rem", // 28px
+            fontWeight: "600",
+          },
+        ],
+        h5: [
+          "1rem", // 16px
+          {
+            lineHeight: "1.5rem", // 24px
+            fontWeight: "600",
+          },
+        ],
+        h6: [
+          "0.875rem", // 14px
+          {
+            lineHeight: "1.25rem", // 20px
+            fontWeight: "600",
+          },
+        ],
+        p: [
+          "1rem", // 16px
+          {
+            lineHeight: "1.5rem", // 24px
+            fontWeight: "400",
+          },
+        ],
       },
     },
     colors: {
       dark: "#13070C",
       light: "#F9F9F9",
       red: "#B80C09",
+      primary: "#714FDB",
+      secondary: "#F8B359",
       blue: {
         dark: "#235789",
         light: "#AFECE7",
@@ -51,6 +101,10 @@ const config: Config = {
             margin: "0 15rem",
           },
         },
+        ".button": {
+          padding: "8px 24px",
+          borderRadius: "4px",
+        }
       });
     }),
   ],

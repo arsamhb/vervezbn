@@ -5,16 +5,16 @@ type Props = {};
 
 const Nav = (props: Props) => {
   return (
-    <nav className="bg-blue-dark standard-padding flex flex-row justify-between items-center h-[10vh]">
-      <ul className="flex flex-row w-full gap-12">
-        <li>
+    <nav className="standard-padding flex flex-row justify-between items-center h-[7vh] fixed top-0 right-0 left-0">
+      <ul className="flex flex-row w-full gap-12 justify-center items-center">
+        <li className="mr-auto">
           <Link href="/">VerveDevLab</Link>
         </li>
         <li>
-          <Link href="/about">About Us</Link>
+          <Link href="/">Home</Link>
         </li>
         <li>
-          <Link href="/how">How it works?</Link>
+          <Link href="/about">About</Link>
         </li>
         <li>
           <Link href="/writing">Writing</Link>
@@ -22,8 +22,11 @@ const Nav = (props: Props) => {
         <li>
           <Link href="/#faq">FAQ</Link>
         </li>
-        <li className=" ml-auto">
+        <li>
           <Link href="/auth">Login</Link>
+        </li>
+        <li className="button bg-secondary">
+          <Link href="/auth">Start</Link>
         </li>
       </ul>
     </nav>

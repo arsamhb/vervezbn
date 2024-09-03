@@ -16,14 +16,11 @@ const features = [
 
 const Features = (props: Props) => {
   return (
-    <div className="flex flex-row justify-between items-center h-[50vh]">
+    <div className="flex flex-row justify-between items-center standard-padding flex-wrap">
       {features.map((feat, index) => (
-        <>
-          <p className="w-1/4 text-center">{feat.text}</p>
-          {index + 1 < features.length && (
-            <div className=" border-l border-2 border-blue-light h-16 my-auto w-0"></div>
-          )}
-        </>
+        <div className="w-[250px] h-[250px] border border-primary rounded-sm grid place-items-center p-4">
+          <p className="text-center">{feat.text}</p>
+        </div>
       ))}
     </div>
   );
