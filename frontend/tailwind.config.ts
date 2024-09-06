@@ -63,10 +63,13 @@ const config: Config = {
       },
     },
     colors: {
+      // "text-light": "#AF9EB4",
       dark: "#13070C",
       light: "#F9F9F9",
       red: "#B80C09",
       primary: "#714FDB",
+      "primary-light": "#E6E7FB",
+      "primary-dark": "#310B5F",
       secondary: "#F8B359",
       blue: {
         dark: "#235789",
@@ -77,6 +80,18 @@ const config: Config = {
   plugins: [
     plugin(function ({ addUtilities, addComponents, e, config }) {
       addUtilities({
+        ".footer-padding": {
+          padding: "6rem 1rem 1rem 1rem",
+          "@screen md": {
+            padding: "6rem 2rem 1rem 2rem",
+          },
+          "@screen lg": {
+            padding: "6rem 5rem 1rem 5rem",
+          },
+          "@screen xl": {
+            padding: "6rem 15rem 1rem 15rem",
+          },
+        },
         ".standard-padding": {
           padding: "1rem 1rem",
           "@screen md": {
@@ -104,7 +119,7 @@ const config: Config = {
         ".button": {
           padding: "8px 24px",
           borderRadius: "4px",
-        }
+        },
       });
     }),
   ],

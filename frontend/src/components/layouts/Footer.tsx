@@ -5,27 +5,39 @@ type Props = {};
 
 const Footer = (props: Props) => {
   return (
-    <footer className="flex flex-col items-center justify-between bg-blue-dark standard-padding gap-8">
+    <footer className="flex flex-col items-center justify-between bg-primary-dark footer-padding gap-16">
       <span className="flex flex-row items-center justify-between w-full">
         <span className="mr-auto">
-          <Link href="/">VerveDevLab</Link>
+          <Link className="text-light text-p" href="/">
+            VerveDevLab
+          </Link>
         </span>
-        <ul className="flex flex-col gap-2">
+        <ul className="flex flex-col gap-4">
           <li>
-            <Link href="/about">About Us</Link>
+            <Link className="text-light text-p" href="/about">
+              About Us
+            </Link>
           </li>
           <li>
-            <Link href="/how">How it works?</Link>
+            <Link className="text-light text-p" href="/how">
+              How it works?
+            </Link>
           </li>
           <li>
-            <Link href="/writing">Writing</Link>
+            <Link className="text-light text-p" href="/writing">
+              Writing
+            </Link>
           </li>
           <li>
-            <Link href="/#faq">FAQ</Link>
+            <Link className="text-light text-p" href="/#faq">
+              FAQ
+            </Link>
           </li>
         </ul>
       </span>
-      <p>&copy; {new Date().getFullYear()} VerveDevLab. All rights reserved.</p>
+      <p className="text-light text-p">
+        &copy; {new Date().getFullYear()} VerveDevLab. All rights reserved.
+      </p>
     </footer>
   );
 };

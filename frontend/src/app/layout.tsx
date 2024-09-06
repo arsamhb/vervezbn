@@ -20,7 +20,7 @@ export default function RootLayout({
           <Nav />
         </header>
         <main className="flex-grow">{children}</main>
-        {/* <Footer /> */}
+        <Footer />
       </body>
     </html>
   );
