@@ -31,7 +31,7 @@ class WritingBase(BaseModel):
     user_id: str
 
 class WritingCreate(WritingBase):
-    pass
+    task: WritingTask
 
 class Writing(WritingBase):
     id: int 

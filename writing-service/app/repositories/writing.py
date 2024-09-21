@@ -1,21 +1,21 @@
 from app.db.session import Session
-from sqlalchemy.orm import subqueryload
-from app.db.models import Writing
+from sqlalchemy.orm import subqueryload, joinedload
+from app.db.models import Writing, WritingPrompt
 from app.enums.writing_status import WritingStatus
+from app.enums.writing_task import WritingTask
 
 
-def find_in_progress_with_user_id(user_id: str):
+def find_in_progress_with_user_id(user_id: str, task: WritingTask):
     with Session() as session:
-        in_progress_writings = session.query(Writing).filter(
-            Writing.user_id == user_id).filter(Writing.status == WritingStatus.IN_PROGRESS).options(
-            subqueryload(Writing.writing_prompt)).first()
+        in_progress_writings = session.query(Writing).join(WritingPrompt).filter(
+            Writing.user_id == user_id).filter(Writing.status == WritingStatus.IN_PROGRESS).filter(WritingPrompt.task == task).options(joinedload(Writing.writing_prompt)).first()
         return in_progress_writings
 
 
-def find_finished_writing_prompt_with_user_id(user_id: str):
+def find_finished_writing_prompt_with_user_id(user_id: str, task: WritingTask):
     with Session() as session:
-        finished_writings = session.query(Writing.writing_prompt_id).filter(
-            Writing.user_id == user_id).filter(Writing.status == WritingStatus.FINISHED).all()
+        finished_writings = session.query(Writing.writing_prompt_id).join(WritingPrompt).filter(
+            Writing.user_id == user_id).filter(Writing.status == WritingStatus.FINISHED).filter(WritingPrompt.task == task).all()
         return [r for r, in finished_writings]
 
 
@@ -34,3 +34,7 @@ def update_submission(writing_id: int, writing: str, status: WritingStatus = Wri
         session.query(Writing).filter(Writing.id == writing_id).update(
             {'content': writing, 'status': status})
         session.commit()
+
+def find_by_id(id: int):
+    with Session() as session:
+        return session.query(Writing).filter(Writing.id == id).first()

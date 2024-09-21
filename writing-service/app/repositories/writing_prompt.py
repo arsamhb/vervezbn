@@ -14,9 +14,9 @@ def create_writing_prompt(content: str, task: WritingTask):
         return new_prompt
 
 
-def match_writing_prompt(previous_matched: List[int]):
+def match_writing_prompt(previous_matched: List[int], task: WritingTask):
     with Session() as session:
-        matched = session.query(WritingPrompt).filter(
+        matched = session.query(WritingPrompt).filter(WritingPrompt.task == task).filter(
             WritingPrompt.id.notin_(previous_matched)).first()
         print('matched', matched)
         return matched

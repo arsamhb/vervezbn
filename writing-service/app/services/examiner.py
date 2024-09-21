@@ -17,7 +17,7 @@ def examine(writing_id: int, writing: str):
     for examinerType in WritingExaminerType:
         examiner = getExaminerClass(examinerType)
         examiners.append(ExaminerCreate(comment=examiner.examine(
-            writing), type=examinerType, writing_id=writing_id))
+            writing), type=examinerType.value, writing_id=writing_id))
     create_bulk(examiners)
 
 def get_examiner_of_writing_by_type(writing_id: int, type: WritingExaminerType):
