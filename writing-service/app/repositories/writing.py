@@ -38,3 +38,8 @@ def update_submission(writing_id: int, writing: str, status: WritingStatus = Wri
 def find_by_id(id: int):
     with Session() as session:
         return session.query(Writing).filter(Writing.id == id).first()
+    
+def get_prompt_by_id(id: int) -> str:
+    with Session() as session:
+        writing = session.query(Writing).filter(Writing.id == id).options(joinedload(Writing.writing_prompt)).first()
+        return writing.writing_prompt.content

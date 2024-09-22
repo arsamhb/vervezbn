@@ -1,13 +1,15 @@
-from fastapi import APIRouter, status, HTTPException
+from fastapi import APIRouter
 from app.enums.writing_examiner_type import WritingExaminerType
 from app.db.schemas import Examiner
-from app.services.examiner import get_examiner_of_writing_by_type
+from app.services.examiner import get_comment
+from typing import Union
+from app.schemas.examiner.free_examiner_response import FreeExaminerResponse
+from app.schemas.examiner.prem_examiner_response import PremExaminerResponse
 
 router = APIRouter(prefix='/examiner')
 
-@router.get('{writing_id}', response_model=Examiner)
+
+@router.get('/{writing_id}', response_model=Union[FreeExaminerResponse, PremExaminerResponse])
 def get_examiner(writing_id: int, type: WritingExaminerType):
-    examiner = get_examiner_of_writing_by_type(writing_id, type)
-    if not examiner:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='examiner not found')
-    return examiner
+    comment = get_comment(writing_id, type)
+    return comment
