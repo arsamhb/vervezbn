@@ -1,6 +1,17 @@
 import { Router } from "express";
-import { chargeWallet } from "../controllers/transaction.contorller";
+import {
+  chargeWallet,
+  getUserBankTransactions,
+  getUserAppTransactions,
+} from "../controllers/transaction.controller";
+import { validateTransactionCharge } from "@/middleware/validations/transaction-validation-middleware";
 
-export const chargeWalletRouter = Router();
+export const transactionRouter = Router();
 
-chargeWalletRouter.post("/", chargeWallet);
+transactionRouter.post(
+  "/charge-wallet",
+  validateTransactionCharge,
+  chargeWallet
+);
+transactionRouter.get("/:userId/bankTransactions", getUserBankTransactions);
+transactionRouter.get("/:userId/appTransactions", getUserAppTransactions);

@@ -5,11 +5,12 @@ import cors from "cors";
 import { errorHandler } from "./src/middleware/error-handler";
 import { corsOptions } from "./src/config/cors-options";
 import cookieParser from "cookie-parser";
-
-import { router } from "@/routes"
+import { ENV } from "@/config/env.config";
+import { router } from "@/routes";
 
 const app = express();
-const PORT = process.env.PORT || 3500;
+const { PORT } = ENV;
+
 
 app.use(logger);
 
@@ -20,8 +21,9 @@ app.use(express.json());
 
 app.use(cookieParser());
 
-router(app)
+router(app);
 
 app.use(errorHandler);
 
 app.listen(PORT, () => console.log(`server is running on port: ${PORT}`));
+
