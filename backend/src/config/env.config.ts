@@ -14,7 +14,7 @@ const getEnvVariable = (key: string, defaultValue?: string): string => {
 };
 
 export const ENV = {
-  PORT: parseInt(getEnvVariable("PORT", "3000"), 10),
+  PORT: parseInt(getEnvVariable("PORT", "4000"), 10),
   ACCESS_TOKEN_SECRET: getEnvVariable("ACCESS_TOKEN_SECRET"),
   REFRESH_TOKEN_SECRET: getEnvVariable("REFRESH_TOKEN_SECRET"),
   WRITING_PREMIUM_TASK_PRICE: getEnvVariable("WRITING_PREMIUM_TASK_PRICE"),

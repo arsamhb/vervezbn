@@ -33,20 +33,24 @@ export async function getUserInfoById(userId: string) {
       balance: true,
       referralCode: true,
       role: true,
-    }
+    },
   });
 }
 
-export async function registerNewUser(email: string, password: string, referralCode: string) {
+export async function registerNewUser(
+  email: string,
+  password: string,
+  referralCode: string
+) {
   return prisma.user.create({ data: { email, password, referralCode } });
 }
 
 export async function isReferralCodeUnique(code: string): Promise<boolean> {
-  const user = await prisma.user.findUnique({ where: { referralCode: code } })
+  const user = await prisma.user.findUnique({ where: { referralCode: code } });
   if (user) {
-    return false
+    return false;
   }
-  return true
+  return true;
 }
 
 export const getUserBalanceByUserId = async (id: string) => {
@@ -60,17 +64,20 @@ export const updateUserBalance = async (id: string, amount: number) => {
   });
 };
 
-export const updateUserInfo = async (userId: string, userInfo: Pick<User, "firstName" | "lastName" | "birthDate" | "phoneNumber">) => {
+export const updateUserInfo = async (
+  userId: string,
+  userInfo: Pick<User, "firstName" | "lastName" | "birthDate" | "phoneNumber">
+) => {
   return prisma.user.update({
     where: {
-      id: userId
+      id: userId,
     },
     data: {
       birthDate: userInfo.birthDate,
       firstName: userInfo.firstName,
       lastName: userInfo.lastName,
-      phoneNumber: userInfo.phoneNumber
-    }, 
+      phoneNumber: userInfo.phoneNumber,
+    },
     select: {
       id: true,
       email: true,
@@ -82,6 +89,6 @@ export const updateUserInfo = async (userId: string, userInfo: Pick<User, "first
       balance: true,
       referralCode: true,
       role: true,
-    }
-  })
-}
+    },
+  });
+};
