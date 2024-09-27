@@ -8,7 +8,6 @@ import { userRouter } from "@/routes/user-routes";
 import swaggerUi from "swagger-ui-express";
 import swaggerSpec from "../config/swagger";
 
-
 export const router = (app: Express) => {
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
   app.use("/", rootRouter);
